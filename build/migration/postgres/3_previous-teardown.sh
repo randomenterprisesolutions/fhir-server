@@ -17,7 +17,7 @@ pushd $(pwd) > /dev/null
 # Change to the migration directory
 cd "${WORKSPACE}/fhir/build/migration/${1}/"
 
-docker-compose down
+docker compose down
 
 cx=0
 while [ $(docker container ls -q | wc -l) -gt 0 ]

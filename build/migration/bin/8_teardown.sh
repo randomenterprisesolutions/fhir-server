@@ -17,7 +17,7 @@ migration_post(){
         bash ${WORKSPACE}/fhir/build/migration/${migration}/8_teardown.sh
     else
         cd ${WORKSPACE}/fhir/build/migration/${migration}/
-        docker-compose stop -v --timeout 30
+        docker compose stop -v --timeout 30
     fi
 }
 
