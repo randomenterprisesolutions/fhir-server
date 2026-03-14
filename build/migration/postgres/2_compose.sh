@@ -93,8 +93,8 @@ config(){
 cleanup(){
     # Stand up a docker container running the fhir server configured for integration tests
     echo "Bringing down any containers that might already be running as a precaution"
-    docker-compose kill
-    docker-compose rm -f
+    docker compose kill
+    docker compose rm -f
 }
 
 # bringup
@@ -110,10 +110,10 @@ bringup(){
     sudo chmod -R 0750 ${WORKSPACE}/fhir/build/migration/postgres/workarea/volumes/dist/db
 
     export IMAGE_VERSION="${PREVIOUS_VERSION}"
-    IMAGE_VERSION="${PREVIOUS_VERSION}" docker-compose build
+    IMAGE_VERSION="${PREVIOUS_VERSION}" docker compose build
 
     # Startup db
-    docker-compose up --remove-orphans -d db
+    docker compose up --remove-orphans -d db
     cx=0
     echo "Debug Details >>> "
     docker container inspect postgres_db_1 | jq -r '.[] | select (.Config.Hostname == "postgres").State.Status'
@@ -170,7 +170,7 @@ bringup(){
         --update-schema
 
     # Startup FHIR
-    docker-compose up --remove-orphans -d fhir
+    docker compose up --remove-orphans -d fhir
     cx=0
     while [ $(docker container inspect postgres_fhir_1 | jq -r '.[] | select (.Config.Hostname == "fhir").State.Status' | wc -l) -gt 0 ] && [ $(docker container inspect postgres_fhir_1  | jq -r '.[] | select (.Config.Hostname == "fhir").State.Health.Status' | grep running | wc -l) -eq 1 ]
     do

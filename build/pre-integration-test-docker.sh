@@ -51,11 +51,11 @@ echo "Finished configuring the FHIR Server for ${subdir}"
 
 # Stand up a docker container running the fhir server configured for integration tests
 echo "Bringing up the test environment... be patient, this will take a minute"
-docker-compose up -d
+docker compose up -d
 echo ">>> Current time: " $(date)
 
 # Print 60 seconds of logs
-#(docker-compose logs --timestamps --follow & P=$! && sleep 60 && kill $P)
+#(docker compose logs --timestamps --follow & P=$! && sleep 60 && kill $P)
 
 # Gather up all the server logs so we can trouble-shoot any problems during startup
 cd -

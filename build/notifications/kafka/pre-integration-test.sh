@@ -51,17 +51,17 @@ config(){
 cleanup(){
     # Stand up a docker container running the fhir server configured for integration tests
     echo "Bringing down any containers that might already be running as a precaution"
-    docker-compose kill
-    docker-compose rm -f
+    docker compose kill
+    docker compose rm -f
 }
 
 # bringup
 bringup(){
     echo "Bringing up containers"
-    docker-compose up --remove-orphans -d
+    docker compose up --remove-orphans -d
     echo ">>> Current time: " $(date)
 
-    (docker-compose logs --timestamps --follow fhir-server & P=$! && sleep 60 && kill $P)
+    (docker compose logs --timestamps --follow fhir-server & P=$! && sleep 60 && kill $P)
 
     # Gather up all the server logs so we can trouble-shoot any problems during startup
     cd -
@@ -119,7 +119,7 @@ bringup(){
     echo "The fhir-server appears to be running..."
 
     # Create the FHIR_notifications topic
-    docker-compose -f build/notifications/kafka/docker-compose.yml exec kafka-1 bash /bin/kafka-topics \
+    docker compose -f build/notifications/kafka/docker-compose.yml exec kafka-1 bash /bin/kafka-topics \
         --bootstrap-server kafka-1:19092,kafka-2:29092 --command-config /etc/kafka/secrets/client-ssl.properties \
         --create --topic FHIR_NOTIFICATIONS --partitions 10 --replication-factor 2
     [ $? -eq 0 ] || exit 9

@@ -46,7 +46,7 @@ jobs:
       run: bash build/notifications/bin/gather-logs.sh ${{matrix.notifications}}
     - name: Upload logs
       if: always()
-      uses: actions/upload-artifact@v2.2.0
+      uses: actions/upload-artifact@v7.0.0
       with:
         name: integration-test-results-${{ matrix.notifications }}-${{ matrix.java }}
         path: build/notifications/${{ matrix.notifications }}/integration-test-results

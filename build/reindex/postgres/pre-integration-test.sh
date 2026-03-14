@@ -56,15 +56,15 @@ config() {
 cleanup() {
     # Stand up a docker container running the fhir server configured for integration tests
     echo "Bringing down any containers that might already be running as a precaution"
-    docker-compose kill
-    docker-compose rm -f
+    docker compose kill
+    docker compose rm -f
 }
 
 # bringup
 bringup() {
     echo "Bringing up containers >>> Current time: " $(date)
     # Startup db
-    docker-compose up --remove-orphans -d db
+    docker compose up --remove-orphans -d db
     cx=0
     while [ $(docker container inspect postgres_db_1 | jq -r '.[] | select (.Config.Hostname == "postgres").State.Status' | wc -l) -gt 0 ] && [ $(docker container inspect postgres_db_1 | jq -r '.[] | select (.Config.Hostname == "postgres").State.Running' | grep false | wc -l) -eq 1 ]
     do
@@ -78,7 +78,7 @@ bringup() {
     done
 
     # Startup FHIR
-    docker-compose up --remove-orphans -d fhir
+    docker compose up --remove-orphans -d fhir
     cx=0
     while [ $(docker container inspect postgres_fhir_1 | jq -r '.[] | select (.Config.Hostname == "fhir").State.Status' | wc -l) -gt 0 ] && [ $(docker container inspect postgres_fhir_1 | jq -r '.[] | select (.Config.Hostname == "fhir").State.Running' | grep false | wc -l) -eq 1 ]
     do

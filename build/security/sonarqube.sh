@@ -8,7 +8,7 @@
 export SONAR_RUNNER_OPTS="-Xmx3062m -XX:MaxPermSize=512m -XX:ReservedCodeCacheSize=128m"
 export MAVEN_OPTS="-Xmx4096m"
 
-docker-compose build -f resources/sonarqube/docker-compose.yml
+docker compose build -f resources/sonarqube/docker-compose.yml
 
 # The parser chokes the HEAP (the parsers are approximately 2 50K files)
 mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar \

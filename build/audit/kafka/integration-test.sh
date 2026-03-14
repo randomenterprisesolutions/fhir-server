@@ -27,7 +27,7 @@ mvn -B -nsu -ntp test -DskipTests=false -f fhir-server-test -DskipWebSocketTest=
 
 # The following test should always Run
 echo "TEST_CONFIGURATION: check that there is output and the configuration works"
-docker-compose -f build/audit/kafka/docker-compose.yml exec -T kafka-1 bash /bin/kafka-console-consumer --timeout-ms 60000 --bootstrap-server=kafka-1:19092,kafka-2:39096 \
+docker compose -f build/audit/kafka/docker-compose.yml exec -T kafka-1 bash /bin/kafka-console-consumer --timeout-ms 60000 --bootstrap-server=kafka-1:19092,kafka-2:39096 \
     --topic FHIR_AUDIT --max-messages 25 --property print.timestamp=true --offset earliest \
     --consumer.config /etc/kafka/secrets/client-ssl.properties \
     --partition 1 > ${WORKSPACE}/build/audit/kafka/workarea/output/fhir_audit-messages.log
@@ -37,7 +37,7 @@ if [ "$(cat ${WORKSPACE}/build/audit/kafka/workarea/output/fhir_audit-messages.l
 then 
     echo "Not FHIR_AUDIT = 25"
     echo "Exported Audit Messages"
-    docker-compose -f build/audit/kafka/docker-compose.yml exec -T kafka-1 wc -l /var/lib/kafka/data/FHIR_AUDIT-0/00000000000000000000.log
+    docker compose -f build/audit/kafka/docker-compose.yml exec -T kafka-1 wc -l /var/lib/kafka/data/FHIR_AUDIT-0/00000000000000000000.log
     cat ${WORKSPACE}/build/audit/kafka/workarea/output/fhir_audit-messages.log
     exit 25
 else 

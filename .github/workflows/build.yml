@@ -182,7 +182,7 @@ jobs:
         cp -r ${GITHUB_WORKSPACE}/fhir-server-test/target/surefire-reports/* ${it_results}/fhir-server-test || true
     - name: Upload logs
       if: always()
-      uses: actions/upload-artifact@v2.2.0
+      uses: actions/upload-artifact@v7.0.0
       with:
         name: integration-test-results-${{ matrix.java }}
         path: SIT/integration-test-results

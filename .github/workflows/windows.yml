@@ -81,7 +81,7 @@ jobs:
         Copy-Item -Path stderr.txt -Destination $DST_ST_F -Force -ErrorAction SilentlyContinue
     - name: Upload logs
       if: always()
-      uses: actions/upload-artifact@v2.2.0
+      uses: actions/upload-artifact@v7.0.0
       with:
         name: integration-test-results-windows-${{ matrix.java }}
         path: SIT/integration-test-results

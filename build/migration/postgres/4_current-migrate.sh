@@ -25,7 +25,7 @@ sudo chown -R 70:70 ${WORKSPACE}/fhir/build/migration/postgres/workarea/volumes/
 sudo chmod -R 0750 ${WORKSPACE}/fhir/build/migration/postgres/workarea/volumes/dist/db
 
 # Startup db
-docker-compose up --remove-orphans -d db
+docker compose up --remove-orphans -d db
 
 echo "Debug Details >>> "
 docker container inspect postgres_db_1 | jq -r '.[] | select (.Config.Hostname == "postgres").State.Status'

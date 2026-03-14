@@ -73,8 +73,8 @@ copy_server_config(){
 cleanup_existing_docker(){
     # Stand up a docker container running the fhir server configured for integration tests
     echo "Bringing down any containers that might already be running as a precaution"
-    docker-compose kill
-    docker-compose rm -f
+    docker compose kill
+    docker compose rm -f
 }
 
 # bring_up_database - brings up database
@@ -88,17 +88,17 @@ bring_up_database(){
 
     mkdir -p ${WORKSPACE}/build/persistence/postgres/db
     echo "Bringing up postgres... be patient, this will take a minute"
-    docker-compose build --pull postgres
-    docker-compose up --remove-orphans -d postgres
+    docker compose build --pull postgres
+    docker compose up --remove-orphans -d postgres
     echo ">>> Current time: " $(date)
 
     # Waiting to startup
     count=0
     echo "Waiting while starting up..."
-    while [ `docker-compose logs --timestamps postgres | grep -c 'database system is ready to accept connections'` -ne 1 ] && [ "${count}" -ne 120 ]
+    while [ `docker compose logs --timestamps postgres | grep -c 'database system is ready to accept connections'` -ne 1 ] && [ "${count}" -ne 120 ]
     do
         echo "... Waiting ... - ${count}"
-        docker-compose logs --timestamps postgres
+        docker compose logs --timestamps postgres
         sleep 5
         count=$((count+1))
     done
@@ -139,11 +139,11 @@ EOF
 # bringup_fhir
 bringup_fhir(){
     echo "Bringing up the FHIR server... be patient, this will take a minute"
-    docker-compose up --remove-orphans -d fhir-server
+    docker compose up --remove-orphans -d fhir-server
     echo ">>> Current time: " $(date)
 
     # TODO wait for it to be healthy instead of just Sleeping
-    (docker-compose logs --timestamps --follow fhir-server & P=$! && sleep 60 && kill $P)
+    (docker compose logs --timestamps --follow fhir-server & P=$! && sleep 60 && kill $P)
 
     # Gather up all the server logs so we can trouble-shoot any problems during startup
     cd -

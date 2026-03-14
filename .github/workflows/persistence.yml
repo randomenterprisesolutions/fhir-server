@@ -45,7 +45,7 @@ jobs:
       run: bash build/persistence/bin/gather-logs.sh ${{matrix.persistence}}
     - name: Upload logs
       if: always()
-      uses: actions/upload-artifact@v2.2.0
+      uses: actions/upload-artifact@v7.0.0
       with:
         name: integration-test-results-${{ matrix.persistence }}-${{ matrix.java }}
         path: build/persistence/integration-test-results
