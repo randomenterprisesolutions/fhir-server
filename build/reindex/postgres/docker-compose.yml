@@ -2,6 +2,7 @@ version: '3.9'
 services:
   db:
     image: test/fhir-pg
+    container_name: postgres_db_1
     hostname: postgres
     shm_size: 256MB
     tty: true
@@ -33,7 +34,8 @@ services:
     ports:
       - 5432:5432
   fhir:
-    image: linuxforhealth/fhir-server:latest
+    image: randomenterprisesolutions/fhir-server:latest
+    pull_policy: never
     hostname: fhir
     volumes:
       - type: bind

@@ -75,7 +75,7 @@ jobs:
       - name: Checkout source code for previous
         uses: actions/checkout@v2.3.4
         with:
-          repository: LinuxForHealth/fhir-server
+          repository: LinuxForHealth/fhir
           path: prev/
           ref: ${{ matrix.release }}
           fetch-depth: 1

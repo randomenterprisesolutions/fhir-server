@@ -10,7 +10,7 @@ on:
 
 jobs:
   e2e-windows:
-    runs-on: windows-2019
+    runs-on: windows-2022
     if: "!contains(github.event.pull_request.labels.*.name, 'ci-skip')"
     strategy:
       matrix:
