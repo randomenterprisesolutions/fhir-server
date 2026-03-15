@@ -15,3 +15,7 @@
 
 # Prevents Apache Xerces from overactively using the service loader to find a class
 -Dorg.apache.xml.dtm.DTMManager=org.apache.xml.dtm.ref.DTMManagerDefault
+
+# Ensure UTF-8 is used for file I/O on all platforms (important on Windows where
+# the default code page is typically Cp1252)
+-Dfile.encoding=UTF-8
