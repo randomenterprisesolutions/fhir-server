@@ -27,9 +27,10 @@ import org.linuxforhealth.fhir.model.test.TestUtil;
  *  - Names with Latin diacritics (e.g. "Müller" must match when searched as "Muller")
  *  - Names with CJK characters (e.g. "田中 太郎")
  *
- * The write path normalises string values using SearchHelper.normalizeForSearch()
- * (NFD decomposition + diacritic stripping + toLowerCase) so that the stored
- * index matches what the search query renderer produces for the same input.
+ * The write path normalises string AND token values using SearchHelper.normalizeForSearch()
+ * (NFD decomposition + diacritic stripping + toLowerCase). Consequently token search on
+ * String-typed elements (e.g. Identifier.value) is also accent-insensitive on this server:
+ * searching for "MR-Muller-..." matches a stored "MR-Müller-...".
  */
 public class SearchUnicodeTest extends FHIRServerTestBase {
 
@@ -71,11 +72,20 @@ public class SearchUnicodeTest extends FHIRServerTestBase {
     }
 
     @Test(groups = { "server-search" }, dependsOnMethods = { "testCreateUnicodePatient" })
-    public void testSearchByIdentifier_stripped_doesNotMatch() {
-        // Unlike string search, token search does NOT strip diacritics — this must NOT match
+    public void testSearchByIdentifier_strippedMatches() {
+        // This server normalises token values for String-typed elements (JDBCParameterBuildingVisitor
+        // calls SearchHelper.normalizeForSearch for TOKEN params on String values). Both
+        // 'MR-Müller-田中-001' (stored) and 'MR-Muller-田中-001' (searched) normalise to the same
+        // lower-cased, diacritic-stripped form — so they DO match.
+        assertPatientFound("identifier", "MR-Muller-田中-001");
+    }
+
+    @Test(groups = { "server-search" }, dependsOnMethods = { "testCreateUnicodePatient" })
+    public void testSearchByIdentifier_differentValue_doesNotMatch() {
+        // A completely different identifier must never match
         WebTarget target = getWebTarget();
         Response response = target.path("Patient")
-                .queryParam("identifier", "MR-Muller-田中-001")
+                .queryParam("identifier", "MR-UNKNOWN-999")
                 .queryParam("_id", patientId)
                 .request(FHIRMediaType.APPLICATION_FHIR_JSON)
                 .get();
@@ -83,7 +93,7 @@ public class SearchUnicodeTest extends FHIRServerTestBase {
         Bundle bundle = response.readEntity(Bundle.class);
         assertNotNull(bundle);
         assertTrue(bundle.getEntry().isEmpty(),
-                "Token search must NOT match 'MR-Muller-田中-001' when stored value is 'MR-Müller-田中-001'");
+                "Token search must NOT match 'MR-UNKNOWN-999' when stored value is 'MR-Müller-田中-001'");
     }
 
     // -----------------------------------------------------------------------
