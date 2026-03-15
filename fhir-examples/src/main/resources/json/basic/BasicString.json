@@ -44,6 +44,14 @@
         "family": "Müller",
         "text": "Hans Müller"
       }
+    },
+    {
+      "url": "http://example.org/HumanName",
+      "valueHumanName": {
+        "given": ["太郎"],
+        "family": "田中",
+        "text": "田中 太郎"
+      }
     }
   ]
 }

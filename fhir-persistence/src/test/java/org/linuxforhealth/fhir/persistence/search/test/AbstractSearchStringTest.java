@@ -183,6 +183,25 @@ public abstract class AbstractSearchStringTest extends AbstractPLSearchTest {
     }
 
     @Test
+    public void testSearchString_HumanName_japanese() throws Exception {
+        /*
+        "given": ["太郎"],
+        "family": "田中",
+        "text": "田中 太郎"
+        */
+        // CJK characters pass through normalizeForSearch unchanged (no diacritics)
+        assertSearchReturnsSavedResource("HumanName", "田中");
+        assertSearchReturnsSavedResource("HumanName", "太郎");
+        assertSearchReturnsSavedResource("HumanName", "田中 太郎");
+        // Prefix match on family
+        assertSearchReturnsSavedResource("HumanName:exact", "田中");
+        // Contains match on middle of text value
+        assertSearchReturnsSavedResource("HumanName:contains", "中 太");
+        // Non-matching value should not return
+        assertSearchDoesntReturnSavedResource("HumanName", "鈴木");
+    }
+
+    @Test
     public void testSearchString_Address() throws Exception {
         /*
         "use": "work",
