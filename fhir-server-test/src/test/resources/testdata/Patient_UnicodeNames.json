@@ -1,0 +1,22 @@
+{
+    "resourceType": "Patient",
+    "identifier": [
+        {
+            "system": "http://example.org/mrn",
+            "value": "MR-Müller-田中-001"
+        }
+    ],
+    "name": [
+        {
+            "family": "Müller",
+            "given": ["Hans"],
+            "text": "Hans Müller"
+        },
+        {
+            "family": "田中",
+            "given": ["太郎"],
+            "text": "田中 太郎"
+        }
+    ],
+    "birthDate": "1980-01-01"
+}
