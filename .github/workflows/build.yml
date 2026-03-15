@@ -60,6 +60,8 @@ jobs:
     - name: Build parent with tests
       env:
         BASE: origin/${{ github['base_ref'] }}
+        # debian-based linux uses C.UTF-8 by default and Derby doesn't like that
+        LC_ALL: en_US.UTF-8
       run: |
         mvn -version
         model_paths=(
