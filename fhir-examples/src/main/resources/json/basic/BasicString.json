@@ -36,6 +36,14 @@
         "suffix": ["II"],
         "text": "Topo Gigio"
       }
+    },
+    {
+      "url": "http://example.org/HumanName",
+      "valueHumanName": {
+        "given": ["Hans"],
+        "family": "Müller",
+        "text": "Hans Müller"
+      }
     }
   ]
 }

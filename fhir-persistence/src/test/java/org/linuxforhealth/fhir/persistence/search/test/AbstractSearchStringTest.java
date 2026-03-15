@@ -165,6 +165,24 @@ public abstract class AbstractSearchStringTest extends AbstractPLSearchTest {
     }
 
     @Test
+    public void testSearchString_HumanName_unicode() throws Exception {
+        /*
+        "given": ["Hans"],
+        "family": "Müller",
+        "text": "Hans Müller"
+        */
+        // Exact match with diacritics
+        assertSearchReturnsSavedResource("HumanName", "Müller");
+        assertSearchReturnsSavedResource("HumanName", "Hans");
+        // Prefix match stripping diacritics (normalizeForSearch must be applied at write AND read time)
+        assertSearchReturnsSavedResource("HumanName", "Muller");
+        assertSearchReturnsSavedResource("HumanName", "muller");
+        assertSearchReturnsSavedResource("HumanName", "Hans Muller");
+        // Exact modifier should NOT match diacritic-stripped form
+        assertSearchDoesntReturnSavedResource("HumanName:exact", "Muller");
+    }
+
+    @Test
     public void testSearchString_Address() throws Exception {
         /*
         "use": "work",

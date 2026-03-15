@@ -30,6 +30,7 @@ import org.linuxforhealth.fhir.persistence.index.StringParameter;
 import org.linuxforhealth.fhir.persistence.index.TagParameter;
 import org.linuxforhealth.fhir.persistence.index.TokenParameter;
 import org.linuxforhealth.fhir.persistence.params.api.IBatchParameterProcessor;
+import org.linuxforhealth.fhir.search.util.SearchHelper;
 import org.linuxforhealth.fhir.persistence.params.model.CodeSystemValue;
 import org.linuxforhealth.fhir.persistence.params.model.CommonCanonicalValue;
 import org.linuxforhealth.fhir.persistence.params.model.CommonTokenValue;
@@ -159,7 +160,7 @@ public class PlainBatchParameterProcessor implements IBatchParameterProcessor {
         try {
             PlainPostgresParameterBatch dao = getParameterBatchDao(resourceType);
             final String strValue = parameter.getValue();
-            final String strValueLower = strValue != null ? strValue.toLowerCase() : null;
+            final String strValueLower = strValue != null ? SearchHelper.normalizeForSearch(strValue) : null;
             dao.addString(logicalResourceId, parameterNameValue.getParameterNameId(), strValue, strValueLower, parameter.getCompositeId());
 
             if (parameter.isSystemParam()) {
