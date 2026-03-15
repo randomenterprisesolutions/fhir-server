@@ -12,6 +12,9 @@ jobs:
   e2e-windows:
     runs-on: windows-2022
     if: "!contains(github.event.pull_request.labels.*.name, 'ci-skip')"
+    env:
+      # Windows uses Cp1252 by default; force UTF-8 so CJK resource files are read correctly
+      JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
     strategy:
       matrix:
         java: [ '11' ]
