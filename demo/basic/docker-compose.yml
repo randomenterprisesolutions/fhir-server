@@ -42,7 +42,7 @@ services:
       - fhir
 
   fhir-server:
-    image: linuxforhealth/fhir-server:latest
+    image: randomenterprisesolutions/fhir-server:latest
     hostname: fhir
     volumes:
       - type: bind

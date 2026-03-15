@@ -22,7 +22,7 @@ required_build(){
     mvn -B install --file fhir-parent -DskipTests -P include-fhir-igs,integration --no-transfer-progress
 
     # Build from dockerfile
-    docker build fhir-install --build-arg VERBOSE=false -t linuxforhealth/fhir-server
+    docker build fhir-install --build-arg VERBOSE=false -t randomenterprisesolutions/fhir-server:latest
 }
 
 # notifications_build - executes for each notifications type.

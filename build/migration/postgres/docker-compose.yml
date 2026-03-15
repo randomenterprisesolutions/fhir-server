@@ -2,6 +2,7 @@ version: '3.9'
 services:
   db:
     image: test/fhir-postgres:snapshot
+    container_name: postgres_db_1
     hostname: postgres
     shm_size: 256MB
     tty: true

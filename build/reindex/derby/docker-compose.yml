@@ -1,7 +1,8 @@
 version: '3.9'
 services:
   fhir:
-    image: linuxforhealth/fhir-server:latest
+    image: randomenterprisesolutions/fhir-server:latest
+    pull_policy: never
     hostname: fhir
     volumes:
       - type: bind

@@ -34,7 +34,7 @@ required_build(){
 
     # Build dockerfile
     cd fhir-install
-    docker build --build-arg VERBOSE=false -t linuxforhealth/fhir-server:latest .
+    docker build --build-arg VERBOSE=false -t randomenterprisesolutions/fhir-server:latest .
     cd ..
 }
 

@@ -1,21 +1,21 @@
 version: '3.8'
 services:
   zookeeper-1:
-    image: confluentinc/cp-zookeeper:latest
+    image: confluentinc/cp-zookeeper:7.6.1
     env_file:
       - ./.zookeeper-1.env
     domainname: fhir.dev
     networks:
       - fhir
   zookeeper-2:
-    image: confluentinc/cp-zookeeper:latest
+    image: confluentinc/cp-zookeeper:7.6.1
     env_file:
       - ./.zookeeper-2.env
     domainname: fhir.dev
     networks:
       - fhir
   kafka-1:
-    image: confluentinc/cp-kafka:latest
+    image: confluentinc/cp-kafka:7.6.1
     depends_on:
       - zookeeper-1
       - zookeeper-2
@@ -33,7 +33,7 @@ services:
       - 19092:19092
       - 29094:29094
   kafka-2:
-    image: confluentinc/cp-kafka:latest
+    image: confluentinc/cp-kafka:7.6.1
     depends_on:
       - zookeeper-1
       - zookeeper-2
@@ -51,7 +51,8 @@ services:
       - 39096:39096
       - 49098:49098
   fhir-server:
-    image: linuxforhealth/fhir-server:latest
+    image: randomenterprisesolutions/fhir-server:latest
+    pull_policy: never
     depends_on:
       - kafka-1
       - kafka-2
