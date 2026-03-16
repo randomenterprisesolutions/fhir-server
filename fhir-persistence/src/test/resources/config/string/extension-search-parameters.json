@@ -325,6 +325,40 @@
             "xpathUsage": "normal"
         }
     },
+    {
+        "fullUrl": "http://example.com/fhir/SearchParameter/Basic-HumanNameLatin",
+        "resource": {
+            "resourceType": "SearchParameter",
+            "id": "Basic-HumanNameLatin",
+            "url": "http://example.com/fhir/SearchParameter/Basic-HumanNameLatin",
+            "name": "HumanNameLatin",
+            "status": "active",
+            "description": "test param for Latin/diacritic HumanName",
+            "code": "HumanNameLatin",
+            "base": ["Basic"],
+            "type": "string",
+            "expression": "Basic.extension.where(url='http://example.org/HumanNameLatin').value",
+            "xpath": "f:Basic/f:extension[@url='http://example.org/HumanNameLatin']/f:valueHumanName",
+            "xpathUsage": "normal"
+        }
+    },
+    {
+        "fullUrl": "http://example.com/fhir/SearchParameter/Basic-HumanNameCJK",
+        "resource": {
+            "resourceType": "SearchParameter",
+            "id": "Basic-HumanNameCJK",
+            "url": "http://example.com/fhir/SearchParameter/Basic-HumanNameCJK",
+            "name": "HumanNameCJK",
+            "status": "active",
+            "description": "test param for CJK HumanName",
+            "code": "HumanNameCJK",
+            "base": ["Basic"],
+            "type": "string",
+            "expression": "Basic.extension.where(url='http://example.org/HumanNameCJK').value",
+            "xpath": "f:Basic/f:extension[@url='http://example.org/HumanNameCJK']/f:valueHumanName",
+            "xpathUsage": "normal"
+        }
+    },
     
     {
         "fullUrl": "http://example.com/fhir/SearchParameter/Basic-missing-string",

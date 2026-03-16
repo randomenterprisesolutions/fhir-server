@@ -38,7 +38,7 @@
       }
     },
     {
-      "url": "http://example.org/HumanName",
+      "url": "http://example.org/HumanNameLatin",
       "valueHumanName": {
         "given": ["Hans"],
         "family": "Müller",
@@ -46,7 +46,7 @@
       }
     },
     {
-      "url": "http://example.org/HumanName",
+      "url": "http://example.org/HumanNameCJK",
       "valueHumanName": {
         "given": ["太郎"],
         "family": "田中",

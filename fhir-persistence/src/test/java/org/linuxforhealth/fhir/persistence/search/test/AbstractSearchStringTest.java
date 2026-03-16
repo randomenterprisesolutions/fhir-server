@@ -172,14 +172,14 @@ public abstract class AbstractSearchStringTest extends AbstractPLSearchTest {
         "text": "Hans Müller"
         */
         // Exact match with diacritics
-        assertSearchReturnsSavedResource("HumanName", "Müller");
-        assertSearchReturnsSavedResource("HumanName", "Hans");
+        assertSearchReturnsSavedResource("HumanNameLatin", "Müller");
+        assertSearchReturnsSavedResource("HumanNameLatin", "Hans");
         // Prefix match stripping diacritics (normalizeForSearch must be applied at write AND read time)
-        assertSearchReturnsSavedResource("HumanName", "Muller");
-        assertSearchReturnsSavedResource("HumanName", "muller");
-        assertSearchReturnsSavedResource("HumanName", "Hans Muller");
+        assertSearchReturnsSavedResource("HumanNameLatin", "Muller");
+        assertSearchReturnsSavedResource("HumanNameLatin", "muller");
+        assertSearchReturnsSavedResource("HumanNameLatin", "Hans Muller");
         // Exact modifier should NOT match diacritic-stripped form
-        assertSearchDoesntReturnSavedResource("HumanName:exact", "Muller");
+        assertSearchDoesntReturnSavedResource("HumanNameLatin:exact", "Muller");
     }
 
     @Test
@@ -190,15 +190,15 @@ public abstract class AbstractSearchStringTest extends AbstractPLSearchTest {
         "text": "田中 太郎"
         */
         // CJK characters pass through normalizeForSearch unchanged (no diacritics)
-        assertSearchReturnsSavedResource("HumanName", "田中");
-        assertSearchReturnsSavedResource("HumanName", "太郎");
-        assertSearchReturnsSavedResource("HumanName", "田中 太郎");
+        assertSearchReturnsSavedResource("HumanNameCJK", "田中");
+        assertSearchReturnsSavedResource("HumanNameCJK", "太郎");
+        assertSearchReturnsSavedResource("HumanNameCJK", "田中 太郎");
         // Prefix match on family
-        assertSearchReturnsSavedResource("HumanName:exact", "田中");
+        assertSearchReturnsSavedResource("HumanNameCJK:exact", "田中");
         // Contains match on middle of text value
-        assertSearchReturnsSavedResource("HumanName:contains", "中 太");
+        assertSearchReturnsSavedResource("HumanNameCJK:contains", "中 太");
         // Non-matching value should not return
-        assertSearchDoesntReturnSavedResource("HumanName", "鈴木");
+        assertSearchDoesntReturnSavedResource("HumanNameCJK", "鈴木");
     }
 
     @Test
