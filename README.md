@@ -41,7 +41,7 @@ Then declare the dependencies in your project. For example, to use the visitable
 ...
 <dependencies>
     <dependency>
-      <groupId>org.linuxforhealth.fhir</groupId>
+      <groupId>com.randomenterprisesolutions.fhir</groupId>
       <artifactId>fhir-model</artifactId>
       <version>${fhir.version}</version>
     </dependency>

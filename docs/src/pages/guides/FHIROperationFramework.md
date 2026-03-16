@@ -164,7 +164,7 @@ The LinuxForHealth FHIR Server has integrated the Extended Operations Framework 
 
 ![Framework](https://raw.githubusercontent.com/wiki/LinuxForHealth/FHIR/operation/operation-framework.png)
 
-On startup, the FHIR Operation Registry uses the Java ServiceLoader framework. Each Operation is registered with the FHIROperationRegistry using `META-INF/services/org.linuxforhealth.fhir.server.operation.spi.FHIROperation` which lists each of the classes that implement the FHIROperation interface
+On startup, the FHIR Operation Registry uses the Java ServiceLoader framework. Each Operation is registered with the FHIROperationRegistry using `META-INF/services/com.randomenterprisesolutions.fhir.server.operation.spi.FHIROperation` which lists each of the classes that implement the FHIROperation interface
 
 For each implementation, the framework calls FHIROperation.getDefinition() to get the OperationDefinition and uses that do determine which endpoint to server the operation from (based on the defined operation levels, resource types, and "code").
 
@@ -172,7 +172,7 @@ Upon receiving a request, the REST Layer checks to see if the JAX-RS path parame
 
 To make implementing custom operations easier, the LinuxForHealth FHIR Server provides an `AbstractOperation` class that provides input and output handling, while delegating to concrete implementations for the OperationDefinition and operation business logic.
 
-For operations that are defined in the base FHIR specification, like [$validate](https://hl7.org/fhir/R4B/resource-operation-validate.html), the OperationDefinition can be retrieved from the built-in [FHIRRegistry](https://github.com/LinuxForHealth/FHIR/blob/6933926b8862d6515336f495e50ee7f66e5bcc15/operation/fhir-operation-validate/src/main/java/org/linuxforhealth/fhir/operation/validate/ValidateOperation.java#L40-L41).
+For operations that are defined in the base FHIR specification, like [$validate](https://hl7.org/fhir/R4B/resource-operation-validate.html), the OperationDefinition can be retrieved from the built-in [FHIRRegistry](https://github.com/LinuxForHealth/FHIR/blob/6933926b8862d6515336f495e50ee7f66e5bcc15/operation/fhir-operation-validate/src/main/java/com/randomenterprisesolutions/fhir/operation/validate/ValidateOperation.java#L40-L41).
 
 Note that once the Operation is loaded it is available until the server is restarted and redoes the ServiceLoader discovery.
 
@@ -200,7 +200,7 @@ The pom.xml should look like:
     <artifactId>fhir-operation-myop</artifactId>
 
     <parent>
-        <groupId>org.linuxforhealth.fhir</groupId>
+        <groupId>com.randomenterprisesolutions.fhir</groupId>
         <artifactId>fhir-parent</artifactId>
         <version>4.4.1-SNAPSHOT</version>
         <relativePath>../../fhir-parent</relativePath>
@@ -221,12 +221,12 @@ Note, if you are using the persistence layer, you naturally get the fhir-persist
 Note, if you are including some custom libraries or other libraries, you should shade the dependencies into a single jar or deliverable.
 
 3. Add your OperationDefinition to the `src/main/resources`, such as healthcare.json.
-4. Extend the AbstractOperation in your package, such as, `org.linuxforhealth.fhir.demo.MyOperation`
-5. Create the Services Loader file `org.linuxforhealth.fhir.server.operation.spi.FHIROperation` in `src/main/resources/META-INF/services/`
+4. Extend the AbstractOperation in your package, such as, `com.randomenterprisesolutions.fhir.demo.MyOperation`
+5. Create the Services Loader file `com.randomenterprisesolutions.fhir.server.operation.spi.FHIROperation` in `src/main/resources/META-INF/services/`
 6. Put a single line in the package for each of the Operations that are going to be hosted in the package.
   ```
-  org.linuxforhealth.fhir.demo.MyOperation
-  org.linuxforhealth.fhir.demo.DemoOperation
+  com.randomenterprisesolutions.fhir.demo.MyOperation
+  com.randomenterprisesolutions.fhir.demo.DemoOperation
   ```
 7. Add the constructor, such as:
 ``` java

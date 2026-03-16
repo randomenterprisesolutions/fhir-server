@@ -281,11 +281,11 @@
       }
     },
     "audit": {
-      "serviceClassName": "org.linuxforhealth.fhir.audit.impl.NopService",
+      "serviceClassName": "com.randomenterprisesolutions.fhir.audit.impl.NopService",
       "serviceProperties": {}
     },
     "persistence": {
-      "factoryClassname": "org.linuxforhealth.fhir.persistence.jdbc.FHIRPersistenceJDBCFactory",
+      "factoryClassname": "com.randomenterprisesolutions.fhir.persistence.jdbc.FHIRPersistenceJDBCFactory",
       "common": {
         "__comment": "Configuration properties common to all persistence layer implementations",
         "updateCreateEnabled": true

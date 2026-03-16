@@ -1,0 +1,6 @@
+com.randomenterprisesolutions.fhir.operation.cqf.EvaluateMeasureOperation
+com.randomenterprisesolutions.fhir.operation.cqf.CareGapsOperation
+com.randomenterprisesolutions.fhir.operation.cqf.LibraryDataRequirementsOperation
+com.randomenterprisesolutions.fhir.operation.cqf.MeasureDataRequirementsOperation
+com.randomenterprisesolutions.fhir.operation.cqf.MeasureSubmitDataOperation
+com.randomenterprisesolutions.fhir.operation.cqf.MeasureCollectDataOperation

@@ -3,7 +3,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>fhir-examples</artifactId>
-    <groupId>org.linuxforhealth.fhir</groupId>
+    <groupId>com.randomenterprisesolutions.fhir</groupId>
     <version>5.0.0-SNAPSHOT</version>
 
     <name>LinuxForHealth FHIR Server - Examples</name>
@@ -206,7 +206,7 @@
                             <show>package</show>
                             <!-- verbose if you are debugging -->
                             <verbose>false</verbose>
-                            <dependencySourceIncludes>org.linuxforhealth.fhir:*</dependencySourceIncludes>
+                            <dependencySourceIncludes>com.randomenterprisesolutions.fhir:*</dependencySourceIncludes>
                             <minmemory>2g</minmemory>
                             <maxmemory>2g</maxmemory>
                             <!-- doclint is none, otherwise build breaks -->
@@ -432,7 +432,7 @@
                             <show>package</show>
                             <!-- verbose if you are debugging -->
                             <verbose>false</verbose>
-                            <dependencySourceIncludes>org.linuxforhealth.fhir:*</dependencySourceIncludes>
+                            <dependencySourceIncludes>com.randomenterprisesolutions.fhir:*</dependencySourceIncludes>
                             <minmemory>2g</minmemory>
                             <maxmemory>2g</maxmemory>
                             <!-- doclint is none, otherwise build breaks -->

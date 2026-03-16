@@ -27,7 +27,7 @@ file.
 
 ```
         "persistence": {
-            "factoryClassname": "org.linuxforhealth.fhir.persistence.cassandra.FHIRPersistenceJDBCCassandraFactory",
+            "factoryClassname": "com.randomenterprisesolutions.fhir.persistence.cassandra.FHIRPersistenceJDBCCassandraFactory",
             "datasources": {
                 "default": {
                     ...
