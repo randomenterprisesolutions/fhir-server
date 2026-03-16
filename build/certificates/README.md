@@ -34,7 +34,7 @@ build/docker/minio/public.crt
 
 # Server: Continuous Integration Certificates
 
-The following certificates are used with the LinuxForHealth FHIR Server. 
+The following certificates are used with the randomenterprisesolutions FHIR Server. 
 
 ```
 fhir-server-webapp/src/main/liberty/config/resources/security/fhirKeyStore.p12

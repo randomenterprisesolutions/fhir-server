@@ -7,7 +7,7 @@
 # ----------------------------------------------------------------------------
 
 docker run --env ENV_TOOL_INPUT=$(cat postgres-onboard.json | base64) \
-    linuxforhealth/fhir-schematool:latest
+    randomenterprisesolutions/fhir-schematool:latest
 
 docker run --env ENV_TOOL_INPUT=$(cat postgres-onboard-noschema.json | base64) \
-    linuxforhealth/fhir-schematool:latest
+    randomenterprisesolutions/fhir-schematool:latest

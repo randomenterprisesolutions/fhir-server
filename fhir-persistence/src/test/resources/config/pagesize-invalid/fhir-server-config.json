@@ -6,7 +6,7 @@
 			"maxPageIncludeCount": 2500
 		},
 		"persistence": {
-			"factoryClassname": "org.linuxforhealth.fhir.persistence.test.MockPersistenceFactory"
+			"factoryClassname": "com.randomenterprisesolutions.fhir.persistence.test.MockPersistenceFactory"
 		}
 	}
 }

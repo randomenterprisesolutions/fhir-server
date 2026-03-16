@@ -12,7 +12,7 @@
             "open": true
         },
         "audit": {
-            "serviceClassName" : "org.linuxforhealth.fhir.audit.impl.NopService",
+            "serviceClassName" : "com.randomenterprisesolutions.fhir.audit.impl.NopService",
             "serviceProperties" : {
             }
         }

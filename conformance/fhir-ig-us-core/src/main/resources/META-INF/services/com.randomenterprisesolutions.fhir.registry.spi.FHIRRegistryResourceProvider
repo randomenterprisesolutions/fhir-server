@@ -1,0 +1,3 @@
+com.randomenterprisesolutions.fhir.ig.us.core.USCore311ResourceProvider
+com.randomenterprisesolutions.fhir.ig.us.core.USCore400ResourceProvider
+com.randomenterprisesolutions.fhir.ig.us.core.USCore501ResourceProvider

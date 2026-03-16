@@ -15,7 +15,7 @@ Events execute the `Application Security Testing` workflow are:
 
 ## AppScan on Cloud (asoc)
 
-The [AppScan on Cloud](https://help.hcltechsw.com/appscan/ASoC/src_cli_linux_analysis.html#src_cli_linux_analysis__queue_analysis) enables the scanning of the LinuxForHealth FHIR Server runtime bytecode. The automation wrapped around this analysis limits the surface area to IBM FHIR Server developed application code. The Implementation Guides are not scanned. The output is user generated, and the `irx` file is saved in the artifact output.
+The [AppScan on Cloud](https://help.hcltechsw.com/appscan/ASoC/src_cli_linux_analysis.html#src_cli_linux_analysis__queue_analysis) enables the scanning of the randomenterprisesolutions FHIR Server runtime bytecode. The automation wrapped around this analysis limits the surface area to IBM FHIR Server developed application code. The Implementation Guides are not scanned. The output is user generated, and the `irx` file is saved in the artifact output.
 
 ### Generating the Latest Report (team members only)
 The following steps under this section are designed to aid the team members in generating the security scan artifacts and reports. A link to the current application is at [scan](https://cloud.appscan.com/AsoCUI/serviceui/main/myapps/oneapp/c4658cf4-e742-4410-99d4-d1c4084b856e/scans)
@@ -60,7 +60,7 @@ The analysis sends an email when complete, and ready for report generation.
 
 The project may need to update the values `APPSCAN_KEY`, `APPSCAN_SECRET` and `APPSCAN_APPID`. These values may need to be changed as keys and secrets change. 
 
-- Navigate to https://github.com/LinuxForHealth/FHIR/settings/secrets/new
+- Navigate to https://github.com/randomenterprisesolutions/FHIR/settings/secrets/new
 - Select the value to update 
 - Click Update
 - Click Update Secret
@@ -76,7 +76,7 @@ The automation uses [Dockle](https://github.com/goodwithtech/dockle) to generate
 <hr>
 
 ## Trivy
-[Trivy](https://github.com/aquasecurity/trivy#embed-in-dockerfile) is used to check for vulnerabilities in the LinuxForHealth FHIR Server container.
+[Trivy](https://github.com/aquasecurity/trivy#embed-in-dockerfile) is used to check for vulnerabilities in the randomenterprisesolutions FHIR Server container.
 
 <hr>
 

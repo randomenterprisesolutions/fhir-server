@@ -1,8 +1,8 @@
 # Jekyll Configuration for Static Pages
 
-title: LinuxForHealth FHIR Server
+title: randomenterprisesolutions FHIR Server
 description: >-
-  The LinuxForHealth FHIR Server is a modular Java implementation of the <a href="https://hl7.org/fhir/R4B/http.html">HL7 FHIR specification</a> 
+  The randomenterprisesolutions FHIR Server is a modular Java implementation of the <a href="https://hl7.org/fhir/R4B/http.html">HL7 FHIR specification</a> 
   that supports versions R4 and R4B with a focus on performance and configurability.
 baseurl: ""
-url: "https://linuxforhealth.github.io/fhir"
+url: "https://randomenterprisesolutions.github.io/fhir"

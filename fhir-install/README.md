@@ -1,6 +1,6 @@
-# LinuxForHealth FHIR Server Install
+# randomenterprisesolutions FHIR Server Install
 
-Running the LinuxForHealth FHIR Server as a Docker container.
+Running the randomenterprisesolutions FHIR Server as a Docker container.
 
 ## Prerequisites
 
