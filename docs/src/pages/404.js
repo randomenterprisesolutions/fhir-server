@@ -8,7 +8,7 @@ import React from 'react';
 import { FourOhFour } from 'gatsby-theme-carbon';
 
 const links = [
-  { href: '/', text: 'LinuxForHealth FHIR Server Homepage' },
+  { href: '/', text: 'randomenterprisesolutions FHIR Server Homepage' },
 ];
 
 const Custom404 = () => <FourOhFour links={links} />;

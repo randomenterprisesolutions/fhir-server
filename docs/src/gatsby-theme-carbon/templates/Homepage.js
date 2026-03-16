@@ -10,11 +10,11 @@ import { HomepageCallout, HomepageBanner } from 'gatsby-theme-carbon';
 import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
 import { calloutLink } from './Homepage.module.scss';
 
-const FirstLeftText = () => <p>LinuxForHealth FHIR&reg; Server</p>;
+const FirstLeftText = () => <p>randomenterprisesolutions FHIR&reg; Server</p>;
 
 const FirstRightText = () => (
   <p>
-    The LinuxForHealth FHIR Server is a modular Java implementation of version 4 of the HL7 FHIR specification with a focus on performance and configurability.
+    The randomenterprisesolutions FHIR Server is a modular Java implementation of version 4 of the HL7 FHIR specification with a focus on performance and configurability.
   </p>
 );
 

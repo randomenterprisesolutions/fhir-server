@@ -79,11 +79,11 @@
   ],
   "extension": [ 
     {
-        "url": "http://org.linuxforhealth.fhir.sample/favorite-mlb",
+        "url": "http://com.randomenterprisesolutions.fhir.sample/favorite-mlb",
         "valueString": "RedSox"
     },
     {
-        "url": "http://org.linuxforhealth.fhir.sample/favorite-nfl",
+        "url": "http://com.randomenterprisesolutions.fhir.sample/favorite-nfl",
         "valueString": "Cowboys"
     }
   ]

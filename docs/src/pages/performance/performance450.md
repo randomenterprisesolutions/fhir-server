@@ -15,11 +15,11 @@ permalink: /performance/performance450/
 
 ### Ingestion Workload
 
-The *fhir-bucket* utility scans an IBM Cloud Object Store (COS) bucket for matching **json** or **ndjson** files. Matching files are recorded in the fhirbucket database and this information is subsequently used to drive the loading of those files into the LinuxForHealth FHIR Server.
+The *fhir-bucket* utility scans an IBM Cloud Object Store (COS) bucket for matching **json** or **ndjson** files. Matching files are recorded in the fhirbucket database and this information is subsequently used to drive the loading of those files into the randomenterprisesolutions FHIR Server.
 
-The test described here uses bundles based on Synthea - Synthetic Mass data. The original bundles have been preprocessed and broken into smaller bundles of no more than 100 resources. Resources within original bundles contain references to other resources within the same bundle. Traditionally, these references would be resolved by the LinuxForHealth FHIR Server on ingestion. However, because the bundles are being broken into smaller units of work, the references must be resolved in advance. This requires that any create requests using server-asserted ids must be rewritten as client asserted id requests, using PUT.
+The test described here uses bundles based on Synthea - Synthetic Mass data. The original bundles have been preprocessed and broken into smaller bundles of no more than 100 resources. Resources within original bundles contain references to other resources within the same bundle. Traditionally, these references would be resolved by the randomenterprisesolutions FHIR Server on ingestion. However, because the bundles are being broken into smaller units of work, the references must be resolved in advance. This requires that any create requests using server-asserted ids must be rewritten as client asserted id requests, using PUT.
 
-The *fhir-bucket* uses a large thread-pool to fetch the bundles from COS and POST each to the LinuxForHealth FHIR Server. The result bundle is parsed and each of the returned logical resource ids are stored in the fhirbucket database, along with some timing metrics.
+The *fhir-bucket* uses a large thread-pool to fetch the bundles from COS and POST each to the randomenterprisesolutions FHIR Server. The result bundle is parsed and each of the returned logical resource ids are stored in the fhirbucket database, along with some timing metrics.
 
 ### Client Access
 
@@ -31,7 +31,7 @@ The client access workload is generated using fhir-bucket running within the sam
 4. Process the response, constructing a new Bundle resource containing GET requests for each Claim and Provider referenced by the ExplanationOfBenefit resources contained in the first response.
 5. Collect statistics on the number of calls, number of resources returned and the time taken for each request.
 
-The request bundles are configured to use a type of TRANSACTION. This provides the best performance as the LinuxForHealth FHIR Server processes each request within the bundle using a single transaction, reducing the commit load on the database.
+The request bundles are configured to use a type of TRANSACTION. This provides the best performance as the randomenterprisesolutions FHIR Server processes each request within the bundle using a single transaction, reducing the commit load on the database.
 
 
 ## System Configuration
@@ -107,23 +107,23 @@ Ingestion rate:
 
 The inserts into the Observation parameter tables for token_values and quantity_values come from composite values, and there is room for improvement for how these inserts are handled:
 
-![Application Breakdown](https://linuxforhealth.github.io/FHIR/images/performance-450/Ingest_Application_Breakdown.png)
+![Application Breakdown](https://randomenterprisesolutions.github.io/fhir-server/images/performance-450/Ingest_Application_Breakdown.png)
 
 The GC activity is very reasonable given the complexity of FHIR resource parsing and validation:
 
-![GC CPU Time](https://linuxforhealth.github.io/FHIR/images/performance-450/Ingest_GC_CPU_Time.png)
+![GC CPU Time](https://randomenterprisesolutions.github.io/fhir-server/images/performance-450/Ingest_GC_CPU_Time.png)
 
 The throughput is stable throughout the loading period:
 
-![Throughput](https://linuxforhealth.github.io/FHIR/images/performance-450/Ingest_Throughput.png)
+![Throughput](https://randomenterprisesolutions.github.io/fhir-server/images/performance-450/Ingest_Throughput.png)
 
 The top database operations reflect what is seen in the application breakdown, with observation_token_values and observation_quantity_values being a good target for future improvement:
 
-![Top DB Operations](https://linuxforhealth.github.io/FHIR/images/performance-450/Ingest_Top_DB_Operations.png)
+![Top DB Operations](https://randomenterprisesolutions.github.io/fhir-server/images/performance-450/Ingest_Top_DB_Operations.png)
 
 Time series view of the same data:
 
-![TOP DB Operations Timeseries](https://linuxforhealth.github.io/FHIR/images/performance-450/Ingest_Top_DB_Ops_Timeseries.png)
+![TOP DB Operations Timeseries](https://randomenterprisesolutions.github.io/fhir-server/images/performance-450/Ingest_Top_DB_Ops_Timeseries.png)
 
 ## Client Read Performance
 
@@ -155,31 +155,31 @@ Throughput is constrained by exhaustion of PostgreSQL CPU.
 
 Database processing rate is slightly more than 3000 transactions per second. This reached 15K transactions/second when using BATCH as the bundle type instead of TRANSACTION. In that case, although the TPS is higher, the overall throughput is lower because each request required multiple transactions.
 
-![DB Transactions Per Second](https://linuxforhealth.github.io/FHIR/images/performance-450/Client_DB_Transactions_Per_Second.png)
+![DB Transactions Per Second](https://randomenterprisesolutions.github.io/fhir-server/images/performance-450/Client_DB_Transactions_Per_Second.png)
 
-![Web Transaction Time](https://linuxforhealth.github.io/FHIR/images/performance-450/Client_Web_Transaction_Time.png)
+![Web Transaction Time](https://randomenterprisesolutions.github.io/fhir-server/images/performance-450/Client_Web_Transaction_Time.png)
 
 The peak aggregate CPU usage for the POD (including the fhirbucket instance driving the test workload) is around 36 cores.
 
-![FHIR POD CPU Usage](https://linuxforhealth.github.io/FHIR/images/performance-450/Client_FHIR_CPU_Usage.png)
+![FHIR POD CPU Usage](https://randomenterprisesolutions.github.io/fhir-server/images/performance-450/Client_FHIR_CPU_Usage.png)
 
 No significant hotspots in the application breakdown:
 
-![Application Breakdown](https://linuxforhealth.github.io/FHIR/images/performance-450/Client_Application_Breakdown.png)
+![Application Breakdown](https://randomenterprisesolutions.github.io/fhir-server/images/performance-450/Client_Application_Breakdown.png)
 
 GC times are remarkably good, especially given the complexity of processing FHIR resources.
 
-![GC CPU Time](https://linuxforhealth.github.io/FHIR/images/performance-450/Client_GC_CPU_Time.png)
+![GC CPU Time](https://randomenterprisesolutions.github.io/fhir-server/images/performance-450/Client_GC_CPU_Time.png)
 
 The top DB operations align with the above Application Breakdown.
 
-![Top DB Operations](https://linuxforhealth.github.io/FHIR/images/performance-450/Client_Top_DB_Operations.png)
+![Top DB Operations](https://randomenterprisesolutions.github.io/fhir-server/images/performance-450/Client_Top_DB_Operations.png)
 
-![Top DB Ops Timeseries](https://linuxforhealth.github.io/FHIR/images/performance-450/Client_Top_DB_Ops_Timeseries.png)
+![Top DB Ops Timeseries](https://randomenterprisesolutions.github.io/fhir-server/images/performance-450/Client_Top_DB_Ops_Timeseries.png)
 
 The database CPU is hitting its limit, suggesting that scaling up to more cores would increase throughput.
 
-![DB CPU Usage](https://linuxforhealth.github.io/FHIR/images/performance-450/Client_DB_CPU_Usage.png)
+![DB CPU Usage](https://randomenterprisesolutions.github.io/fhir-server/images/performance-450/Client_DB_CPU_Usage.png)
 
 ##  Postgres Database Configuration
 

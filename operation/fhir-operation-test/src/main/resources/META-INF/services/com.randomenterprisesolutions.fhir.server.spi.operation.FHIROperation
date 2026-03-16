@@ -1,0 +1,3 @@
+com.randomenterprisesolutions.fhir.operation.test.BadOperation
+com.randomenterprisesolutions.fhir.operation.test.CrashingOperation
+com.randomenterprisesolutions.fhir.operation.test.MyOperation

@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: 'LinuxForHealth FHIR Server',
-    description: 'The LinuxForHealth FHIR Server is a modular Java implementation of version 4 of the HL7 FHIR specification with a focus on performance and configurability.',
+    title: 'randomenterprisesolutions FHIR Server',
+    description: 'The randomenterprisesolutions FHIR Server is a modular Java implementation of version 4 of the HL7 FHIR specification with a focus on performance and configurability.',
     keywords: 'ibm,fhir,server',
-    siteUrl: 'https://linuxforhealth.github.io'
+    siteUrl: 'https://randomenterprisesolutions.github.io'
   },
   pathPrefix: '/FHIR',
   plugins: [
@@ -15,7 +15,7 @@ module.exports = {
         titleType: 'append',
         isSearchEnabled: false,
         repository: {
-          baseUrl: 'https://github.com/LinuxForHealth/FHIR',
+          baseUrl: 'https://github.com/randomenterprisesolutions/FHIR',
           subDirectory: '/docs',
           branch: 'main',
         },

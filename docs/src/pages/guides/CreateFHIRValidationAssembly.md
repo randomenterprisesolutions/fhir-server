@@ -11,7 +11,7 @@ The instructions below can be used to create an assembly than contains all the j
 ### Pre-Requisites
 
 **Repository**  
-Navigate to https://github.com/LinuxForHealth/FHIR 
+Navigate to https://github.com/randomenterprisesolutions/FHIR 
 
 Open a terminal window 
 
@@ -99,7 +99,7 @@ If you chose to add the user defined profile, you must pass in the name of the d
 You should see `[INFO] BUILD SUCCESS`, and the assembly is ready.
 
 # Download Dependencies
-- FHIR [Download from Maven.org](https://repo1.maven.org/maven2/org/linuxforhealth/fhir)
+- FHIR [Download from Maven.org](https://repo1.maven.org/maven2/com/randomenterprisesolutions/fhir)
 - Antlr [Antlr](https://repo1.maven.org/maven2/org/antlr/antlr4-runtime/4.5.3/)
 - Json https://repo1.maven.org/maven2/jakarta/json/jakarta.json-api/1.1.5/
 - Annotations https://repo1.maven.org/maven2/jakarta/annotation/jakarta.annotation-api/

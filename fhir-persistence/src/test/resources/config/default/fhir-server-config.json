@@ -1,11 +1,11 @@
 {
 	"fhirServer": {
 		"persistence": {
-			"factoryClassname": "org.linuxforhealth.fhir.persistence.test.MockPersistenceFactory"
+			"factoryClassname": "com.randomenterprisesolutions.fhir.persistence.test.MockPersistenceFactory"
 		}
 	},
-	"persistenceFactoryName": "org.linuxforhealth.fhir.persistence.test.MockPersistenceFactory",
+	"persistenceFactoryName": "com.randomenterprisesolutions.fhir.persistence.test.MockPersistenceFactory",
 	"badFactoryName": "com.example.this.is.a.bad.factory.classname",
-	"notAFactoryName": "org.linuxforhealth.fhir.persistence.test.NotAPersistenceFactory",
-	"exceptionFactoryName": "org.linuxforhealth.fhir.persistence.test.MockExceptionPersistenceFactory"
+	"notAFactoryName": "com.randomenterprisesolutions.fhir.persistence.test.NotAPersistenceFactory",
+	"exceptionFactoryName": "com.randomenterprisesolutions.fhir.persistence.test.MockExceptionPersistenceFactory"
 }

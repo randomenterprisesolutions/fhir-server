@@ -1,0 +1,2 @@
+com.randomenterprisesolutions.fhir.operation.reindex.ReindexOperation
+com.randomenterprisesolutions.fhir.operation.reindex.RetrieveIndexOperation

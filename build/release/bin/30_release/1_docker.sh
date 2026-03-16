@@ -17,7 +17,7 @@ else
   LATEST=false
 fi
 
-# Executes the build for the linuxforhealth/fhir-schematool.
+# Executes the build for the randomenterprisesolutions/fhir-schematool.
 # This build runs first so that the FAILURE comes before and stops the subsequent builds/releases.
 export WORKSPACE=$(pwd)
 bash ${WORKSPACE}/fhir-install/src/main/docker/fhir-schematool/build.sh

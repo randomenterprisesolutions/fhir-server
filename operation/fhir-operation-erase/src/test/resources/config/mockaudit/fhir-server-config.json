@@ -2,7 +2,7 @@
     "__comment": "FHIR Server - Operation - Erase - Test Configuration",
     "fhirServer": {
         "audit": {
-            "serviceClassName" : "org.linuxforhealth.fhir.operation.erase.mock.MockAuditLogService",
+            "serviceClassName" : "com.randomenterprisesolutions.fhir.operation.erase.mock.MockAuditLogService",
             "serviceProperties" : {
             }
         },

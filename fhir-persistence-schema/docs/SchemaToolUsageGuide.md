@@ -1,6 +1,6 @@
 # IBM FHIR Server - Schema Deployment
 
-This document details how to deploy the LinuxForHealth FHIR Server schema and apply release upgrades. This document also describes how the schema changes are managed.
+This document details how to deploy the randomenterprisesolutions FHIR Server schema and apply release upgrades. This document also describes how the schema changes are managed.
 
 The schema tool generates the following object types that require management: 
 
@@ -12,7 +12,7 @@ The schema tool generates the following object types that require management:
 - TABLE
 - TABLE CONSTRAINT 
 
-For details on the schema design, refer to the [Schema Design](https://github.com/LinuxForHealth/FHIR/tree/main/fhir-persistence-schema/docs/SchemaDesign.md) document.
+For details on the schema design, refer to the [Schema Design](https://github.com/randomenterprisesolutions/FHIR/tree/main/fhir-persistence-schema/docs/SchemaDesign.md) document.
 
 ----------------------------------------------------------------
 ## Database Support
@@ -39,10 +39,10 @@ psql postgres
 
 ## Printing the schema DDL for review
 
-To print the schema DDL for review, execute `org.linuxforhealth.fhir.schema.app.SchemaPrinter`:
+To print the schema DDL for review, execute `com.randomenterprisesolutions.fhir.schema.app.SchemaPrinter`:
 
 ``` shell
-java -cp ./fhir-persistence-schema-${VERSION}-cli.jar org.linuxforhealth.fhir.schema.app.SchemaPrinter [--to-file]
+java -cp ./fhir-persistence-schema-${VERSION}-cli.jar com.randomenterprisesolutions.fhir.schema.app.SchemaPrinter [--to-file]
 ```
 
 Note: Replace `${VERSION}` with the version of the jar you're using or use the wildcard `*` to match any version.
@@ -62,7 +62,7 @@ The `fhir-persistence-schema` tool uses a properties file for database connectio
 |password | The user password for connecting to the database|
 |sslConnection | true or anything else, true triggers JDBC to use ssl, an example --prop sslConnection=true |
 
-A sample properties file can be found at https://github.com/LinuxForHealth/FHIR/blob/main/fhir-persistence-schema/postgresql.properties
+A sample properties file can be found at https://github.com/randomenterprisesolutions/FHIR/blob/main/fhir-persistence-schema/postgresql.properties
 
 Alternatively, properties may be passed via the command line interface `--prop` flag (`--prop <propname>=<propvalue>`). The flag can be repeated for setting multiple properties.
 
@@ -70,7 +70,7 @@ Alternatively, properties may be passed via the command line interface `--prop` 
 
 ### Note on Concurrency Protection
 
-The schema tool protects itself when multiple instances of the tool are run concurrently. This can happen in cloud deployment environments where multiple instances of the LinuxForHealth FHIR Server are deployed, with each running their own schema-update tool before starting the server process. Instances of the schema update tool first acquire a `lease` before they perform any operations on a particular schema (for example: creating a new table or altering an existing table). An instance will try to acquire a lease for 10s. If it is unable to do so, it will exit with an error message and exit code 6. If multiple instances of the tool are run concurrently, the instance blocked waiting for the lease may eventually acquire the lease after the first instance completes within the 10s window. If the first instance successfully updated the schema, the second instance will see that the schema is now up-to-date and will skip further processing for that schema. If the first instance failed to update the schema, the second instance will attempt to apply the changes again.
+The schema tool protects itself when multiple instances of the tool are run concurrently. This can happen in cloud deployment environments where multiple instances of the randomenterprisesolutions FHIR Server are deployed, with each running their own schema-update tool before starting the server process. Instances of the schema update tool first acquire a `lease` before they perform any operations on a particular schema (for example: creating a new table or altering an existing table). An instance will try to acquire a lease for 10s. If it is unable to do so, it will exit with an error message and exit code 6. If multiple instances of the tool are run concurrently, the instance blocked waiting for the lease may eventually acquire the lease after the first instance completes within the 10s window. If the first instance successfully updated the schema, the second instance will see that the schema is now up-to-date and will skip further processing for that schema. If the first instance failed to update the schema, the second instance will attempt to apply the changes again.
 
 ### Running the CLI
 
@@ -119,9 +119,9 @@ For Citus:
 
 For PostgreSQL:
 
-The FHIRSERVER user is the database user used by the LinuxForHealth FHIR Server to connect
+The FHIRSERVER user is the database user used by the randomenterprisesolutions FHIR Server to connect
 to the database. This user is granted the minimal set of privileges required
-for the LinuxForHealth FHIR Server to operate. The FHIRADMIN user should only be used
+for the randomenterprisesolutions FHIR Server to operate. The FHIRADMIN user should only be used
 for schema updates, not for IBM FHIR Server access.
 
 ```
@@ -155,9 +155,9 @@ Citus database to provide increased scalability.
 --grant-to FHIRSERVER
 ```
 
-When `--db-type citus` is specified, the resulting schema includes different behavior for some indexes and foreign key constraints. For details on the DISTRIBUTED schema design, refer to the [Schema Design](https://github.com/LinuxForHealth/FHIR/tree/main/fhir-persistence-schema/docs/SchemaDesign.md) document.
+When `--db-type citus` is specified, the resulting schema includes different behavior for some indexes and foreign key constraints. For details on the DISTRIBUTED schema design, refer to the [Schema Design](https://github.com/randomenterprisesolutions/FHIR/tree/main/fhir-persistence-schema/docs/SchemaDesign.md) document.
 
-Note that the datasource must also be identified as type `citus` in the fhir-server-config.json file. See the [IBM FHIR Server Users Guide](https://linuxforhealth.github.io/FHIR/guides/FHIRServerUsersGuide) for more details.
+Note that the datasource must also be identified as type `citus` in the fhir-server-config.json file. See the [IBM FHIR Server Users Guide](https://randomenterprisesolutions.github.io/fhir-server/guides/FHIRServerUsersGuide) for more details.
 
 
 You can create the standard version of the schema on a target Citus database
@@ -255,7 +255,7 @@ Alternatively, you can drop specific schemas with `--drop-schema-batch schema-na
 `--drop-schema-oauth schema-name-to-drop`
 
 ## Adjust the Vacuum Settings for PostgreSQL Tables only
-Since 4.9.0, the LinuxForHealth FHIR Server has implemented support for modifying the [autovacuum](https://www.postgresql.org/docs/12/runtime-config-autovacuum.html). Per [4.1.2. Tuning Auto-vacuum](https://linuxforhealth.github.io/FHIR/guides/FHIRPerformanceGuide/#412-tuning-auto-vacuum) the schema tool modifies `autovacuum_vacuum_cost_limit`, `autovacuum_vacuum_scale_factor` and `autovacuum_vacuum_threshold`.
+Since 4.9.0, the randomenterprisesolutions FHIR Server has implemented support for modifying the [autovacuum](https://www.postgresql.org/docs/12/runtime-config-autovacuum.html). Per [4.1.2. Tuning Auto-vacuum](https://randomenterprisesolutions.github.io/fhir-server/guides/FHIRPerformanceGuide/#412-tuning-auto-vacuum) the schema tool modifies `autovacuum_vacuum_cost_limit`, `autovacuum_vacuum_scale_factor` and `autovacuum_vacuum_threshold`.
 
 The autovacuum_vacuum_scale_factor is not automatically configured, and not recommended on Databases for Postgres on IBM Cloud. The system configuration overrides the setting.
 
@@ -329,7 +329,7 @@ The connection pool size must include additional headroom above the configured t
 
 ## Alternative: Manually apply the schema
 
-To see the LinuxForHealth FHIR Server schema DDL:
+To see the randomenterprisesolutions FHIR Server schema DDL:
 
 ### Print the schema to files by executing the SchemaPrinter:
 
@@ -382,13 +382,13 @@ The detail rows are tab-separated, making it easy to load the data into a spread
 
 **Notes:**
 1. The size report is only supported on PostgreSQL databases.
-2. The size report is intended as a guide to understand the relative space distribution of objects in the LinuxForHealth FHIR Server data schema. The report is not intended to replace database utilities for calculating the total size of the database.
+2. The size report is intended as a guide to understand the relative space distribution of objects in the randomenterprisesolutions FHIR Server data schema. The report is not intended to replace database utilities for calculating the total size of the database.
 3. The size report is not supported on Citus because not all the required size data can be collected.
 
 ----------------------------------------------------------------
 # Read-Only Access to FHIR Data Tables
 
-Some services may want direct access to the LinuxForHealth FHIR Server tables. In most cases this access will be read-only. To facilitate this, create a database user and then issue the following command to grant SELECT privilege on all the resource data tables to the specified user:
+Some services may want direct access to the randomenterprisesolutions FHIR Server tables. In most cases this access will be read-only. To facilitate this, create a database user and then issue the following command to grant SELECT privilege on all the resource data tables to the specified user:
 
 ``` shell
 java -jar ./fhir-persistence-schema-${VERSION}-cli.jar \

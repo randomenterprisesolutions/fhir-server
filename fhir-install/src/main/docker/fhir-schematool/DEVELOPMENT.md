@@ -1,6 +1,6 @@
 # Development
 
-The document helps developers setup the development environment for the LinuxForHealth FHIR Server Schema Tool. 
+The document helps developers setup the development environment for the randomenterprisesolutions FHIR Server Schema Tool. 
 
 1. Build the `fhir-examples` and `fhir-parent`
 
@@ -24,25 +24,25 @@ cp ${WORKSPACE}/LICENSE target/LICENSE
 4. Build the schema tool. 
 
 ``` shell
-docker build --tag linuxforhealth/fhir-schematool:latest .
+docker build --tag randomenterprisesolutions/fhir-schematool:latest .
 ```
 
 or 
 
 ``` shell
-docker build --build-arg FHIR_VERSION=5.0.0 -t linuxforhealth/fhir-schematool:5.0.0 .
+docker build --build-arg FHIR_VERSION=5.0.0 -t randomenterprisesolutions/fhir-schematool:5.0.0 .
 ```
 
 5. For Postgres, run. (You may have to edit the corresponding examples)
 
 * onboard
 ``` shell
-time docker run  --env ENV_TOOL_INPUT=`cat examples/postgres/persistence-offboard-example.json |base64` linuxforhealth/fhir-schematool:latest | tee out.log
+time docker run  --env ENV_TOOL_INPUT=`cat examples/postgres/persistence-offboard-example.json |base64` randomenterprisesolutions/fhir-schematool:latest | tee out.log
 ```
 
 * offboard
 ``` shell
-time docker run  --env ENV_TOOL_INPUT=`cat examples/postgres/persistence-onboard-example.json |base64` linuxforhealth/fhir-schematool:latest | tee out.log
+time docker run  --env ENV_TOOL_INPUT=`cat examples/postgres/persistence-onboard-example.json |base64` randomenterprisesolutions/fhir-schematool:latest | tee out.log
 ```
 
 6. Confirm you see your changes work, and the Deployment works.

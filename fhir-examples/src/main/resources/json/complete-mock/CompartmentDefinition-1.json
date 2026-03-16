@@ -91,7 +91,7 @@
     "_code": {
         "extension": [
             {
-                "url": "http://fhir.linuxforhealth.org/extension/custom-compartment-type",
+                "url": "http://fhir.randomenterprisesolutions.com/extension/custom-compartment-type",
                 "valueCode": "Bogus"
             }
         ]

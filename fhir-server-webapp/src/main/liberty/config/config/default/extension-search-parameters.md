@@ -23,13 +23,13 @@ An example as follows:
 			"contact": [{
 				"telecom": [{
 					"system": "url",
-					"value": "http://linuxforhealth.org"
+					"value": "http://randomenterprisesolutions.com"
 				}]
 			},
 			{
 				"telecom": [{
 					"system": "url",
-					"value": "http://linuxforhealth.org"
+					"value": "http://randomenterprisesolutions.com"
 				}]
 			}],
 			"description": "the patient's favorite color",

@@ -21,7 +21,7 @@ services:
     ports:
       - "5432:5432"
   tool:
-    image: linuxforhealth/fhir-schematool:latest
+    image: randomenterprisesolutions/fhir-schematool:latest
     restart: always
     environment:
       PLACEHOLDER: change-password

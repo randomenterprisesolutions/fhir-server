@@ -27,7 +27,7 @@
         displayTextWhenNoErrorPageDefined="Unexpected request/response. Please check the URL and try again."
         deferServletLoad="false"/>
 
-    <!-- LinuxForHealth FHIR Server's keystore and truststore configuration -->
+    <!-- randomenterprisesolutions FHIR Server's keystore and truststore configuration -->
     <ssl id="defaultSSLConfig" keyStoreRef="defaultKeyStore" trustStoreRef="defaultTrustStore" clientAuthenticationSupported="true" sslProtocol="TLSv1.2"/>
     <keyStore id="defaultKeyStore" location="${server.config.dir}/resources/security/fhirKeyStore.p12" password="change-password"/>
     <keyStore id="defaultTrustStore" location="${server.config.dir}/resources/security/fhirTrustStore.p12" password="change-password"/>
@@ -47,8 +47,8 @@
         The trace specification can be set via the TRACE_SPEC environment variable (or by overriding it below).
         
         Example trace specifications: 
-        <logging traceSpecification="*=info:org.linuxforhealth.fhir.*=finer" traceFormat="BASIC"/>
-        <logging traceSpecification="org.linuxforhealth.fhir.persistence.jdbc.dao.impl.*=fine:org.linuxforhealth.fhir.database.utils.query.*=fine" traceFormat="BASIC"/>
+        <logging traceSpecification="*=info:com.randomenterprisesolutions.fhir.*=finer" traceFormat="BASIC"/>
+        <logging traceSpecification="com.randomenterprisesolutions.fhir.persistence.jdbc.dao.impl.*=fine:com.randomenterprisesolutions.fhir.database.utils.query.*=fine" traceFormat="BASIC"/>
         <logging traceSpecification="${TRACE_SPEC}" traceFileName="${TRACE_FILE}" traceFormat="${TRACE_FORMAT}" consoleLogLevel="${WLP_LOGGING_CONSOLE_LOGLEVEL}"/>
         
         To send the trace messages to standard out, set TRACE_FILE to "stdout".
@@ -64,7 +64,7 @@
 
     <applicationMonitor updateTrigger="mbean"/>
 
-    <!-- This is the main LinuxForHealth FHIR Server REST API war -->
+    <!-- This is the main randomenterprisesolutions FHIR Server REST API war -->
     <webApplication id="fhir-server-webapp" contextRoot="fhir-server/api/v4" location="fhir-server.war" name="fhir-server-webapp">
         <classloader privateLibraryRef="fhirUserLib"/>
         <!-- Include id attributes to make it easier to override this via dropinConfig -->
@@ -80,7 +80,7 @@
 
     <!--
         This sharedlib can contain user-contributed jars that are intended to augment
-        the LinuxForHealth FHIR Server installation (persistence interceptors, persistence layer impl's,
+        the randomenterprisesolutions FHIR Server installation (persistence interceptors, persistence layer impl's,
         custom operation impl's, etc.)
      -->
     <library id="fhirUserLib">

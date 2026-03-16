@@ -1,6 +1,6 @@
 # **Design**
 
-The LinuxForHealth FHIR Schema Tool provides an Docker image that wraps the `fhir-persistence-schema` executable jar. The tool is state machine which take a single configuration to establish a current and running state of the LinuxForHealth FHIR Server.
+The randomenterprisesolutions FHIR Schema Tool provides an Docker image that wraps the `fhir-persistence-schema` executable jar. The tool is state machine which take a single configuration to establish a current and running state of the randomenterprisesolutions FHIR Server.
 
 The design is such that it COULD, but does not support multiple input files at this time.
 
@@ -25,7 +25,7 @@ The schema onboarding flow setup add a new tenant or update the database to the 
     1. If connectivity succeeds, proceed.
 1. Create the schema
 1. Update the Schema 
-1. Grant permissions to the LinuxForHealth FHIR Server database user
+1. Grant permissions to the randomenterprisesolutions FHIR Server database user
 
 **Schema Offboarding Flow**
 
