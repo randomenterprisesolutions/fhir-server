@@ -1,15 +1,15 @@
-# LinuxForHealth FHIR Server - fhir-persistence-schema
+# randomenterprisesolutions FHIR Server - fhir-persistence-schema
 
-Builds and manages the LinuxForHealth FHIR R4/R4B RDBMS schema for PostgreSQL and includes Derby support for testing.
+Builds and manages the randomenterprisesolutions FHIR R4/R4B RDBMS schema for PostgreSQL and includes Derby support for testing.
 
-This module is built into two different jar files. The default jar is included with the LinuxForHealth FHIR Server web application and is used for bootstrapping Apache Derby databases (if configured). There is also an executable command line interface (cli) version of this jar that packages this module with all of its dependencies.
+This module is built into two different jar files. The default jar is included with the randomenterprisesolutions FHIR Server web application and is used for bootstrapping Apache Derby databases (if configured). There is also an executable command line interface (cli) version of this jar that packages this module with all of its dependencies.
 
-The executable command line interface (cli) version of this module can be downloaded from the project [Releases tab](https://github.com/LinuxForHealth/FHIR/releases).
+The executable command line interface (cli) version of this module can be downloaded from the project [Releases tab](https://github.com/randomenterprisesolutions/FHIR/releases).
 
 The following guides contain detailed descriptions on usage and schema design:
 
-* [Schema Deployment and Upgrade Guide](https://github.com/LinuxForHealth/FHIR/tree/main/fhir-persistence-schema/docs/SchemaToolUsageGuide.md)
-* [Schema Design](https://github.com/LinuxForHealth/FHIR/tree/main/fhir-persistence-schema/docs/SchemaDesign.md)
+* [Schema Deployment and Upgrade Guide](https://github.com/randomenterprisesolutions/FHIR/tree/main/fhir-persistence-schema/docs/SchemaToolUsageGuide.md)
+* [Schema Design](https://github.com/randomenterprisesolutions/FHIR/tree/main/fhir-persistence-schema/docs/SchemaDesign.md)
 
 ---------
 ## TL;DR
@@ -37,7 +37,7 @@ java -jar ./fhir-persistence-schema-${VERSION}-cli.jar \
 
 Note: Replace `${VERSION}` with the version of the jar you're using or use the wildcard `*` to match any version.
 
-3. Run the schema tool CLI again to create the tables and indexes in the `fhirdata` schema. We recommend following the least-privilege access model, so the LinuxForHealth FHIR Server should connect using a non-admin user. Use the `--grant-to` option to grant the correct privileges to the non-admin user created for the LinuxForHealth FHIR Server (the user `fhirserver` in the following example):
+3. Run the schema tool CLI again to create the tables and indexes in the `fhirdata` schema. We recommend following the least-privilege access model, so the randomenterprisesolutions FHIR Server should connect using a non-admin user. Use the `--grant-to` option to grant the correct privileges to the non-admin user created for the randomenterprisesolutions FHIR Server (the user `fhirserver` in the following example):
 
 ``` shell
 java -jar ./fhir-persistence-schema-${VERSION}-cli.jar \
@@ -62,6 +62,6 @@ java -jar ./fhir-persistence-schema-${VERSION}-cli.jar \
   --pool-size 1
 ```
 
-For details on configuring TLS and using other databases and options, read the full [Schema Deployment and Upgrade Guide](https://github.com/LinuxForHealth/FHIR/tree/main/fhir-persistence-schema/docs/SchemaToolUsageGuide.md).
+For details on configuring TLS and using other databases and options, read the full [Schema Deployment and Upgrade Guide](https://github.com/randomenterprisesolutions/FHIR/tree/main/fhir-persistence-schema/docs/SchemaToolUsageGuide.md).
 
 FHIR® is the registered trademark of HL7 and is used with the permission of HL7.

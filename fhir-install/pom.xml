@@ -172,7 +172,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <repository>ghcr.io/linuxforhealth/fhir-server</repository>
+                            <repository>ghcr.io/randomenterprisesolutions/fhir-server</repository>
                         </configuration>
                     </plugin>
                 </plugins>

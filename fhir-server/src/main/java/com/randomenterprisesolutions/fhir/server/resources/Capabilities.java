@@ -113,7 +113,7 @@ public class Capabilities extends FHIRResource {
     private static final Logger log = java.util.logging.Logger.getLogger(Capabilities.class.getName());
 
     // Constants
-    private static final String FHIR_SERVER_NAME = "LinuxForHealth FHIR Server";
+    private static final String FHIR_SERVER_NAME = "randomenterprisesolutions FHIR Server";
     private static final String FHIR_COPYRIGHT = "© Merative US L.P. and others 2016, 2022";
     private static final String BASE_CAPABILITY_URL = "http://hl7.org/fhir/CapabilityStatement/base";
     private static final String BASE_2_CAPABILITY_URL = "http://hl7.org/fhir/CapabilityStatement/base2";

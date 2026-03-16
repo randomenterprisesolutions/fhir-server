@@ -1,7 +1,7 @@
 ## randomenterprisesolutions FHIR Server
 The randomenterprisesolutions FHIR® Server (originally the IBM® FHIR® Server, formerly the LinuxForHealth FHIR® Server) is a modular Java implementation of the [HL7 FHIR specification](https://hl7.org/fhir/R4B/http.html) that supports versions R4 and R4B with a focus on performance and configurability.
 
-For a detailed description of FHIR conformance, see https://linuxforhealth.github.io/FHIR/Conformance.
+For a detailed description of FHIR conformance, see https://randomenterprisesolutions.github.io/fhir-server/Conformance.
 
 The server is available in the following forms:
 * a web application archive (war)
@@ -9,10 +9,10 @@ The server is available in the following forms:
 * a [Linux container image](https://github.com/randomenterprisesolutions/fhir-server/pkgs/container/fhir-server) from GitHub Packages
 
 ### Running the server
-Guides for configuring, operating, and extending the randomenterprisesolutions FHIR Server are available from https://linuxforhealth.github.io/FHIR/guides/FHIRServerUsersGuide.
+Guides for configuring, operating, and extending the randomenterprisesolutions FHIR Server are available from https://randomenterprisesolutions.github.io/fhir-server/guides/FHIRServerUsersGuide.
 
 #### From the zip installer
-Download the fhir-persistence-schema and fhir-install assets from the [Releases tab](https://github.com/randomenterprisesolutions/fhir-server/releases) and follow the instructions from the [User's Guide](https://linuxforhealth.github.io/FHIR/guides/FHIRServerUsersGuide#21-installing-a-new-server) to:
+Download the fhir-persistence-schema and fhir-install assets from the [Releases tab](https://github.com/randomenterprisesolutions/fhir-server/releases) and follow the instructions from the [User's Guide](https://randomenterprisesolutions.github.io/fhir-server/guides/FHIRServerUsersGuide#21-installing-a-new-server) to:
 1. Use fhir-persistence-schema-VERSION-cli.jar to deploy the schema.
 2. Unzip, install, and configure the server.
 

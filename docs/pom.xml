@@ -13,7 +13,7 @@
   <packaging>pom</packaging>
 
   <name>fhir-docs</name>
-  <url>http://linuxforhealth.github.io/FHIR</url>
+  <url>https://randomenterprisesolutions.github.io/fhir-server</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

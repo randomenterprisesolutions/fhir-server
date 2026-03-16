@@ -6,13 +6,13 @@
 # SPDX-License-Identifier: Apache-2.0
 # ----------------------------------------------------------------------------
 
-# Issue - https://github.com/LinuxForHealth/FHIR/issues/1797
+# Issue - https://github.com/randomenterprisesolutions/FHIR/issues/1797
 
 # Don't log out the --pool-size
 
 # Pre Condition:
-# 1 - linuxforhealth/fhir-schematool must be built based on the latest.
-#       docker build -t linuxforhealth/fhir-schematool:latest .
+# 1 - randomenterprisesolutions/fhir-schematool must be built based on the latest.
+#       docker build -t randomenterprisesolutions/fhir-schematool:latest .
 
 # Post Condition: 
 # 1 - Postgres should be started

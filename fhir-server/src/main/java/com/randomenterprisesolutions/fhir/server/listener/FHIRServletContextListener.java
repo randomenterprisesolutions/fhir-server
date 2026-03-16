@@ -89,7 +89,7 @@ import com.randomenterprisesolutions.fhir.term.remote.provider.RemoteTermService
 import com.randomenterprisesolutions.fhir.term.service.FHIRTermService;
 import com.randomenterprisesolutions.fhir.term.spi.FHIRTermServiceProvider;
 
-@WebListener("LinuxForHealth FHIR Server Servlet Context Listener")
+@WebListener("randomenterprisesolutions FHIR Server Servlet Context Listener")
 public class FHIRServletContextListener implements ServletContextListener {
     private static final Logger log = Logger.getLogger(FHIRServletContextListener.class.getName());
     private static final Logger metricLogger = Logger.getLogger("com.randomenterprisesolutions.fhir.MetricReport");

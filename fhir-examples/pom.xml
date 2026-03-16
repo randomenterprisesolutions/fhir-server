@@ -6,21 +6,21 @@
     <groupId>com.randomenterprisesolutions.fhir</groupId>
     <version>5.0.0-SNAPSHOT</version>
 
-    <name>LinuxForHealth FHIR Server - Examples</name>
-    <url>https://github.com/LinuxForHealth/fhir</url>
+    <name>randomenterprisesolutions FHIR Server - Examples</name>
+    <url>https://github.com/randomenterprisesolutions/fhir</url>
     <organization>
-        <name>LinuxForHealth</name>
-        <url>https://github.com/LinuxForHealth/fhir</url>
+        <name>randomenterprisesolutions</name>
+        <url>https://github.com/randomenterprisesolutions/fhir</url>
     </organization>
     <scm>
-        <connection>scm:git:https://github.com/LinuxForHealth/fhir.git</connection>
-        <url>https://github.com/LinuxForHealth/fhir.git</url>
+        <connection>scm:git:https://github.com/randomenterprisesolutions/fhir.git</connection>
+        <url>https://github.com/randomenterprisesolutions/fhir.git</url>
     </scm>
     <issueManagement>
-        <url>https://github.com/LinuxForHealth/fhir/issues</url>
+        <url>https://github.com/randomenterprisesolutions/fhir/issues</url>
     </issueManagement>
     <ciManagement>
-        <url>https://github.com/LinuxForHealth/fhir/actions</url>
+        <url>https://github.com/randomenterprisesolutions/fhir/actions</url>
     </ciManagement>
     <description>Examples for testing FHIR Server implementations.</description>
     <licenses>
@@ -214,7 +214,7 @@
                             <detectLinks>true</detectLinks>
                             <!-- control display -->
                             <author>false</author>
-                            <windowtitle>LinuxForHealth FHIR Server</windowtitle>
+                            <windowtitle>randomenterprisesolutions FHIR Server</windowtitle>
                             <doctitle>${project.name} ${project.version}</doctitle>
                             <additionalOptions>
                                 <!-- makes the frames visible, disabled and 
@@ -223,7 +223,7 @@
                                 <!-- Fixes the undefined redirect in search -->
                                 <additionalOption>--no-module-directories</additionalOption>
                             </additionalOptions>
-                            <header><![CDATA[<a href="/FHIR" class="bx--header__name" target="_parent"><span>LinuxForHealth</span>&nbsp;FHIR®&nbsp;Server</a>]]></header>
+                            <header><![CDATA[<a href="/FHIR" class="bx--header__name" target="_parent"><span>randomenterprisesolutions</span>&nbsp;FHIR®&nbsp;Server</a>]]></header>
                             <bottom><![CDATA[Copyright 2019, 2022. <a href="http://www.ibm.com">IBM Corporation</a><br/>FHIR&reg; is the registered trademark of HL7 and is used with the permission of HL7.]]></bottom>
                             <author>false</author>
                             <stylesheetfile>${project.build.directory}/../../fhir-parent/src/javadocs/stylesheet.css</stylesheetfile>
@@ -440,7 +440,7 @@
                             <detectLinks>true</detectLinks>
                             <!-- control display -->
                             <author>false</author>
-                            <windowtitle>LinuxForHealth FHIR Server</windowtitle>
+                            <windowtitle>randomenterprisesolutions FHIR Server</windowtitle>
                             <doctitle>${project.name} ${project.version}</doctitle>
                             <additionalOptions>
                                 <!-- makes the frames visible, disabled and going 
@@ -449,7 +449,7 @@
                                 <!-- Fixes the undefined redirect in search -->
                                 <additionalOption>--no-module-directories</additionalOption>
                             </additionalOptions>
-                            <header><![CDATA[<a href="/FHIR" class="bx--header__name" target="_parent"><span>LinuxForHealth</span>&nbsp;FHIR®&nbsp;Server</a>]]></header>
+                            <header><![CDATA[<a href="/FHIR" class="bx--header__name" target="_parent"><span>randomenterprisesolutions</span>&nbsp;FHIR®&nbsp;Server</a>]]></header>
                             <bottom><![CDATA[Copyright 2019, 2021. <a href="http://www.ibm.com">IBM Corporation</a><br/>FHIR&reg; is the registered trademark of HL7 and is used with the permission of HL7.]]></bottom>
                             <author>false</author>
                             <stylesheetfile>${project.build.directory}/../../fhir-parent/src/javadocs/stylesheet.css</stylesheetfile>

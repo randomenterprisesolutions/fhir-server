@@ -37,8 +37,8 @@ public class FHIRConstants {
 
     public static final String FORCE_UPDATE_HEADER = "X-FHIR-FORCE-UPDATE";
 
-    public static final String EXT_BASE = "http://fhir.linuxforhealth.org/extension/";
-    public static final String TAG_BASE = "http://fhir.linuxforhealth.org/tag/";
+    public static final String EXT_BASE = "http://fhir.randomenterprisesolutions.com/extension/";
+    public static final String TAG_BASE = "http://fhir.randomenterprisesolutions.com/tag/";
 
     /**
      * General parameter names that can be used with any FHIR interaction.

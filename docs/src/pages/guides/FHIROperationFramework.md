@@ -16,7 +16,7 @@ Level | Example | Description
 **Type** | https://my-server.com/fhir-server/api/v4/Patient/$export | Retrieve all the data from the Patient compartment
 **Instance** | https://my-server.com/fhir-server/api/v4/Patient/1-2-3-4/$export |Retrieve a specific Patient data from the Patient compartment data
 
-A list of operations supported by the LinuxForHealth FHIR Server is listed at https://linuxforhealth.github.io/FHIR/Conformance/#extended-operations
+A list of operations supported by the randomenterprisesolutions FHIR Server is listed at https://randomenterprisesolutions.github.io/fhir-server/Conformance/#extended-operations
 
 ## Calling an Operation
 There are two types of operation invocation requests:
@@ -158,11 +158,11 @@ The elements needed are:
   - Be sure to have a return parameter
   - Typically this is a FHIR Resource
 
-# The LinuxForHealth Extended Operations Framework implementation
+# The randomenterprisesolutions Extended Operations Framework implementation
 
-The LinuxForHealth FHIR Server has integrated the Extended Operations Framework into the code base.
+The randomenterprisesolutions FHIR Server has integrated the Extended Operations Framework into the code base.
 
-![Framework](https://raw.githubusercontent.com/wiki/LinuxForHealth/FHIR/operation/operation-framework.png)
+![Framework](https://raw.githubusercontent.com/wiki/randomenterprisesolutions/FHIR/operation/operation-framework.png)
 
 On startup, the FHIR Operation Registry uses the Java ServiceLoader framework. Each Operation is registered with the FHIROperationRegistry using `META-INF/services/com.randomenterprisesolutions.fhir.server.operation.spi.FHIROperation` which lists each of the classes that implement the FHIROperation interface
 
@@ -170,19 +170,19 @@ For each implementation, the framework calls FHIROperation.getDefinition() to ge
 
 Upon receiving a request, the REST Layer checks to see if the JAX-RS path parameter `${operationName}` from a System, Type or Instance call is a registered Operation. If a FHIROperation exists in the registry with a "code" that matches the passed operationName, and it is valid for the level / resource type request, the framework calls FHIROperation.invoke() for that specific Operation type.
 
-To make implementing custom operations easier, the LinuxForHealth FHIR Server provides an `AbstractOperation` class that provides input and output handling, while delegating to concrete implementations for the OperationDefinition and operation business logic.
+To make implementing custom operations easier, the randomenterprisesolutions FHIR Server provides an `AbstractOperation` class that provides input and output handling, while delegating to concrete implementations for the OperationDefinition and operation business logic.
 
-For operations that are defined in the base FHIR specification, like [$validate](https://hl7.org/fhir/R4B/resource-operation-validate.html), the OperationDefinition can be retrieved from the built-in [FHIRRegistry](https://github.com/LinuxForHealth/FHIR/blob/6933926b8862d6515336f495e50ee7f66e5bcc15/operation/fhir-operation-validate/src/main/java/com/randomenterprisesolutions/fhir/operation/validate/ValidateOperation.java#L40-L41).
+For operations that are defined in the base FHIR specification, like [$validate](https://hl7.org/fhir/R4B/resource-operation-validate.html), the OperationDefinition can be retrieved from the built-in [FHIRRegistry](https://github.com/randomenterprisesolutions/FHIR/blob/6933926b8862d6515336f495e50ee7f66e5bcc15/operation/fhir-operation-validate/src/main/java/com/randomenterprisesolutions/fhir/operation/validate/ValidateOperation.java#L40-L41).
 
 Note that once the Operation is loaded it is available until the server is restarted and redoes the ServiceLoader discovery.
 
 ## Code Examples
-There are a number of examples in the [LinuxForHealth/FHIR repo](https://github.com/LinuxForHealth/FHIR/tree/main/operation).
+There are a number of examples in the [randomenterprisesolutions/FHIR repo](https://github.com/randomenterprisesolutions/FHIR/tree/main/operation).
 
 ## Installation of an Operation
-The Operations are installed into the `userlib` folder of the LinuxForHealth FHIR Server. Some solutions are installing the operation as a layer in a docker image, or mount it as a volume.
+The Operations are installed into the `userlib` folder of the randomenterprisesolutions FHIR Server. Some solutions are installing the operation as a layer in a docker image, or mount it as a volume.
 
-![install location](https://raw.githubusercontent.com/wiki/LinuxForHealth/FHIR/operation/installation-location.png)
+![install location](https://raw.githubusercontent.com/wiki/randomenterprisesolutions/FHIR/operation/installation-location.png)
 
 ## Building a FHIR Operation
 To build a FHIR Operation, a great starting point is the GitHub repo.
@@ -334,5 +334,5 @@ You can return null as a Parameters object - `return FHIROperationUtil.getOutput
 # Questions and Support
 If you need further support, you can reach out to the development team at:
 
-- [Zulip: LinuxForHealth](https://chat.fhir.org/#narrow/stream/212434-LinuxForHealth)
-- [GitHub: issues](https://github.com/LinuxForHealth/FHIR/issues)
+- [Zulip: randomenterprisesolutions](https://chat.fhir.org/#narrow/stream/212434-randomenterprisesolutions)
+- [GitHub: issues](https://github.com/randomenterprisesolutions/FHIR/issues)

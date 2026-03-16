@@ -37,7 +37,7 @@ import com.randomenterprisesolutions.fhir.registry.FHIRRegistry;
 import com.randomenterprisesolutions.fhir.search.SearchConstants;
 
 /**
- * A utility for adding the http://fhir.linuxforhealth.org/extension/implicit-system extension
+ * A utility for adding the http://fhir.randomenterprisesolutions.com/extension/implicit-system extension
  * to search parameters which always reference code values with a particular system
  */
 public class SearchParameterAugmenter {

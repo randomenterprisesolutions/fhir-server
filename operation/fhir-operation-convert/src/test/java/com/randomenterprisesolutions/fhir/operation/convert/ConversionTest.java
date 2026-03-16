@@ -19,7 +19,7 @@ import com.randomenterprisesolutions.fhir.model.resource.Resource;
 import com.randomenterprisesolutions.fhir.model.type.Extension;
 
 public class ConversionTest {
-    // https://github.com/LinuxForHealth/FHIR/issues/3577
+    // https://github.com/randomenterprisesolutions/FHIR/issues/3577
     @Test(enabled = false)
     void testStringCompare() throws Exception {
         Resource original = Patient.builder()

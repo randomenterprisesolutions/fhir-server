@@ -28,7 +28,7 @@ public class SchemaConstants {
     public static final String RECORD_ID = "RECORD_ID";
     public static final String VERSION_ID = "VERSION_ID";
 
-    // https://github.com/LinuxForHealth/FHIR/issues/3862
+    // https://github.com/randomenterprisesolutions/FHIR/issues/3862
     public static final String FHIR_USER_GRANT_GROUP = "fhiruser";
     public static final String FHIR_READ_USER_GRANT_GROUP = "fhirreaduser";
 }

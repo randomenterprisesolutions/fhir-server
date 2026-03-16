@@ -155,9 +155,9 @@ See the [Validation Guide](FHIRValidationGuide) for more information.
 ## Using the FHIR model with JAX-RS
 
 Java and XML - Restful Services (JAX-RS) is an API specification for building and consuming HTTP-based interfaces in Java.
-The LinuxForHealth fhir-core module defines FHIR media types (`application/fhir+xml` and `application/json+xml`) and the fhir-provider module implements JAX-RS providers that use the fhir-model Parsers and Generators to read and write these media types.
+The randomenterprisesolutions fhir-core module defines FHIR media types (`application/fhir+xml` and `application/json+xml`) and the fhir-provider module implements JAX-RS providers that use the fhir-model Parsers and Generators to read and write these media types.
 
-To integrate the LinuxForHealth JAX-RS providers with your own JAX-RS implementation, you must register a provider. For example, when building a JAX-RS client:
+To integrate the randomenterprisesolutions JAX-RS providers with your own JAX-RS implementation, you must register a provider. For example, when building a JAX-RS client:
 ```
 ClientBuilder cb = ClientBuilder.newBuilder()
         .register(new FHIRProvider(RuntimeType.CLIENT));

@@ -2243,7 +2243,7 @@ public class FHIRPersistenceJDBCImpl implements FHIRPersistence, SchemaNameSuppl
             }
         }
 
-        // as of https://github.com/LinuxForHealth/FHIR/issues/3091 we flag a resource as a member of its own compartment
+        // as of https://github.com/randomenterprisesolutions/FHIR/issues/3091 we flag a resource as a member of its own compartment
         if (searchHelper.isCompartmentType(resourceType)) {
             ReferenceParmVal pv = new ReferenceParmVal();
             pv.setName(CompartmentHelper.makeCompartmentParamName(resourceType));

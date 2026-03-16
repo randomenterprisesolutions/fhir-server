@@ -1,6 +1,6 @@
 # Development
 
-The document helps developers setup the development environment for the LinuxForHealth FHIR Server - Bucket Tool. 
+The document helps developers setup the development environment for the randomenterprisesolutions FHIR Server - Bucket Tool. 
 
 1. Build the `fhir-examples` and `fhir-parent`
 
@@ -24,13 +24,13 @@ cp ${WORKSPACE}/LICENSE target/LICENSE
 4. Build the bucket tool. 
 
 ``` shell
-docker build --build-arg FHIR_VERSION=5.0.0 -t linuxforhealth/fhir-bucket-tool:5.0.0 .
+docker build --build-arg FHIR_VERSION=5.0.0 -t randomenterprisesolutions/fhir-bucket-tool:5.0.0 .
 ```
 
 5. Run
 
 ``` shell
-time docker run linuxforhealth/fhir-bucket-tool:latest $ARGS | tee out.log
+time docker run randomenterprisesolutions/fhir-bucket-tool:latest $ARGS | tee out.log
 ```
 
 # Run a Shell Check 

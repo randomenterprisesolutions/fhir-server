@@ -164,7 +164,7 @@ public abstract class AbstractCompartmentTest extends AbstractPersistenceTest {
     }
 
     /**
-     * Per https://github.com/LinuxForHealth/FHIR/issues/3091 a Patient resource should be in its own compartment
+     * Per https://github.com/randomenterprisesolutions/FHIR/issues/3091 a Patient resource should be in its own compartment
      */
     @Test
     public void testPatientCompartmentIdentity() throws Exception {
@@ -181,7 +181,7 @@ public abstract class AbstractCompartmentTest extends AbstractPersistenceTest {
     }
 
     /**
-     * Per https://github.com/LinuxForHealth/FHIR/issues/3091 a Device resource should be in its own compartment.
+     * Per https://github.com/randomenterprisesolutions/FHIR/issues/3091 a Device resource should be in its own compartment.
      * However, Device is the one compartment definition where this resource type isn't valid for its own compartment.
      */
     @Test(expectedExceptions = FHIRSearchException.class)
@@ -199,7 +199,7 @@ public abstract class AbstractCompartmentTest extends AbstractPersistenceTest {
     }
 
     /**
-     * Per https://github.com/LinuxForHealth/FHIR/issues/3091 an Encounter resource should be in its own compartment
+     * Per https://github.com/randomenterprisesolutions/FHIR/issues/3091 an Encounter resource should be in its own compartment
      */
     @Test
     public void testEncounterCompartmentIdentity() throws Exception {
@@ -216,7 +216,7 @@ public abstract class AbstractCompartmentTest extends AbstractPersistenceTest {
     }
 
     /**
-     * Per https://github.com/LinuxForHealth/FHIR/issues/3091 a Practitioner resource should be in its own compartment
+     * Per https://github.com/randomenterprisesolutions/FHIR/issues/3091 a Practitioner resource should be in its own compartment
      */
     @Test
     public void testPractitionerCompartmentIdentity() throws Exception {
@@ -233,7 +233,7 @@ public abstract class AbstractCompartmentTest extends AbstractPersistenceTest {
     }
 
     /**
-     * Per https://github.com/LinuxForHealth/FHIR/issues/3091 a Practitioner resource should be in its own compartment
+     * Per https://github.com/randomenterprisesolutions/FHIR/issues/3091 a Practitioner resource should be in its own compartment
      */
     @Test
     public void testRelatedPersonCompartmentIdentity() throws Exception {

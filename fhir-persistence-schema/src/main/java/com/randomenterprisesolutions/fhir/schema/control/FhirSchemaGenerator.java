@@ -219,7 +219,7 @@ public class FhirSchemaGenerator {
     }
 
     /**
-     * Generate the LinuxForHealth FHIR Server Schema with just the given resourceTypes
+     * Generate the randomenterprisesolutions FHIR Server Schema with just the given resourceTypes
      *
      * @param adminSchemaName
      * @param schemaName
