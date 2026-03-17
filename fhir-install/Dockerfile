@@ -1,11 +1,12 @@
 # ----------------------------------------------------------------------------
 # (C) Copyright IBM Corp. 2016, 2022
+# (C) Copyright Random Enterprise Solutions 2026
 #
 # SPDX-License-Identifier: Apache-2.0
 # ----------------------------------------------------------------------------
 # Stage: Base
 
-FROM openliberty/open-liberty:22.0.0.12-kernel-slim-java11-openj9-ubi as base
+FROM openliberty/open-liberty:25.0.0.6-kernel-slim-java11-openj9-ubi as base
 
 USER root
 RUN yum install -y unzip
@@ -21,7 +22,7 @@ COPY src/main/docker/fhir-server/bootstrap.sh /opt/fhir-server/
 # ----------------------------------------------------------------------------
 # Stage: Runnable
 
-FROM openliberty/open-liberty:22.0.0.12-kernel-slim-java11-openj9-ubi
+FROM openliberty/open-liberty:25.0.0.6-kernel-slim-java11-openj9-ubi
 
 ARG VERBOSE=true
 ARG FHIR_SERVER_VERSION=5.0.0-SNAPSHOT
