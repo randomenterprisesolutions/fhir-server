@@ -3,17 +3,17 @@ import HomepageTemplate from 'gatsby-theme-carbon/src/templates/Homepage';
 export default HomepageTemplate;
 
 ## Conformance
-The LinuxForHealth FHIR Server conforms to versions 4.0.1 (R4) and 4.3.0 (R4B) of the HL7 FHIR specification.
+The randomenterprisesolutions FHIR Server conforms to versions 4.0.1 (R4) and 4.3.0 (R4B) of the HL7 FHIR specification.
 
 We use AEGIS Touchstone to test and publish our [conformance results](https://touchstone.aegis.net/touchstone/conformance/detail?suite=FHIR4-0-1-Basic-Server&sVersion=22&testSystem=636ad848d7abe75593a4523c&supportedOnly=false&cb=%2fFHIR4-0-1-Basic&format=ALL&published=true).
 
 For a detailed description of conformance, please see [Conformance](/Conformance).
 
 ## Running the server
-Information on installing, configuring, and running the LinuxForHealth FHIR Server is available in the User Guide at [FHIRServerUsersGuide](/guides/FHIRServerUsersGuide).
+Information on installing, configuring, and running the randomenterprisesolutions FHIR Server is available in the User Guide at [FHIRServerUsersGuide](/guides/FHIRServerUsersGuide).
 
-## Building with the LinuxForHealth FHIR modules
-LinuxForHealth FHIR artifacts are available in Maven Central with a group ID of `org.linuxforhealth.fhir`.
+## Building with the randomenterprisesolutions FHIR modules
+randomenterprisesolutions FHIR artifacts are available in Maven Central with a group ID of `com.randomenterprisesolutions.fhir`.
 
 For example, if you are using Maven and would like use our object model (including our high-performance parser, generator, and validator),
 you could declare the dependency like this:
@@ -22,7 +22,7 @@ you could declare the dependency like this:
 ...
 <dependencies>
     <dependency>
-      <groupId>org.linuxforhealth.fhir</groupId>
+      <groupId>com.randomenterprisesolutions.fhir</groupId>
       <artifactId>fhir-model</artifactId>
       <version>${fhir.version}</version>
     </dependency>

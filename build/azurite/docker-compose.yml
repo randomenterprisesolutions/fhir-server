@@ -64,7 +64,7 @@ services:
         source: ./fhir-server/bulkdata
         target: /output/bulkdata
     environment:
-        TRACE_SPEC: "org.linuxforhealth.fhir.*=INFO"
+        TRACE_SPEC: "com.randomenterprisesolutions.fhir.*=INFO"
         TRACE_FILE: "stdout"
         BATCH_DB_HOSTNAME: postgres
         BATCH_DB_USER: fhirbatch

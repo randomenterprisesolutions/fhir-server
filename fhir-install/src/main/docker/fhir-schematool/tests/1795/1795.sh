@@ -6,12 +6,12 @@
 # SPDX-License-Identifier: Apache-2.0
 # ----------------------------------------------------------------------------
 
-# Issue - https://github.com/LinuxForHealth/FHIR/issues/1795
+# Issue - https://github.com/randomenterprisesolutions/FHIR/issues/1795
 # Create Schemas should support in multiple ways. 
 
 # Pre Condition:
-# 1 - linuxforhealth/fhir-schematool must be built based on the latest.
-#       docker build -t linuxforhealth/fhir-schematool:latest .
+# 1 - randomenterprisesolutions/fhir-schematool must be built based on the latest.
+#       docker build -t randomenterprisesolutions/fhir-schematool:latest .
 
 # Post Condition: 
 # 1 - Postgres should be started

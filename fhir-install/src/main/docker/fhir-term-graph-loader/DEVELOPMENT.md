@@ -1,6 +1,6 @@
 # Development
 
-The document helps developers setup the development environment for the LinuxForHealth FHIR Server - Term Graph Loader Tool. 
+The document helps developers setup the development environment for the randomenterprisesolutions FHIR Server - Term Graph Loader Tool. 
 
 1. Build the `fhir-examples` and `fhir-parent`
 
@@ -24,23 +24,23 @@ cp ${WORKSPACE}/LICENSE target/LICENSE
 4. Build the tool. 
 
 ``` shell
-docker build --tag linuxforhealth/fhir-term-loader:latest .
+docker build --tag randomenterprisesolutions/fhir-term-loader:latest .
 ```
 
 or 
 
 ``` shell
-docker build --build-arg FHIR_VERSION=5.0.0 -t linuxforhealth/fhir-term-loader:5.0.0 .
+docker build --build-arg FHIR_VERSION=5.0.0 -t randomenterprisesolutions/fhir-term-loader:5.0.0 .
 ```
 
 5. Run the shell. (You may have to edit the corresponding examples)
 
 ``` shell
-time docker run --rm -e LOAD_UMLS=true linuxforhealth/fhir-term-loader:latest| tee out.log
+time docker run --rm -e LOAD_UMLS=true randomenterprisesolutions/fhir-term-loader:latest| tee out.log
 ```
 
 ``` shell
-time docker run --rm -e LOAD_MAP=true linuxforhealth/fhir-term-loader:latest| tee out.log
+time docker run --rm -e LOAD_MAP=true randomenterprisesolutions/fhir-term-loader:latest| tee out.log
 ```
 
 You'll also have to mount a config properties and pass in a configuration environment variable.

@@ -1,3 +1,0 @@
-org.linuxforhealth.fhir.operation.test.BadOperation
-org.linuxforhealth.fhir.operation.test.CrashingOperation
-org.linuxforhealth.fhir.operation.test.MyOperation

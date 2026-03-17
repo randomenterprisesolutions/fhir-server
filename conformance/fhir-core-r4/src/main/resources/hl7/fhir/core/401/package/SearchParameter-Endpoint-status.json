@@ -7,7 +7,7 @@
             "valueCode": "trial-use"
         },
         {
-            "url": "http://fhir.linuxforhealth.org/extension/implicit-system",
+            "url": "http://fhir.randomenterprisesolutions.com/extension/implicit-system",
             "valueUri": "http://hl7.org/fhir/endpoint-status"
         }
     ],

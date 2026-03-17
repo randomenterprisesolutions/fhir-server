@@ -31,14 +31,14 @@ mkdir -p target/
 cp ${WORKSPACE}/term/fhir-term-graph-loader/target/fhir-term-graph-loader-*-cli.jar target/
 cp ${WORKSPACE}/LICENSE target/
 
-docker build --build-arg FHIR_VERSION=${BUILD_ID} -t linuxforhealth/fhir-term-loader:latest .
-DOCKER_IMAGE=$(docker images --filter=reference='linuxforhealth/fhir-term-loader:latest' --format "{{.ID}}")
+docker build --build-arg FHIR_VERSION=${BUILD_ID} -t randomenterprisesolutions/fhir-term-loader:latest .
+DOCKER_IMAGE=$(docker images --filter=reference='randomenterprisesolutions/fhir-term-loader:latest' --format "{{.ID}}")
 echo "Docker Image is:  ${DOCKER_IMAGE}"
 
-docker tag ${DOCKER_IMAGE} ghcr.io/linuxforhealth/fhir-term-loader:${BUILD_ID}
-docker tag ${DOCKER_IMAGE} ghcr.io/linuxforhealth/fhir-term-loader:latest
-docker push ghcr.io/linuxforhealth/fhir-term-loader:${BUILD_ID}
-docker push ghcr.io/linuxforhealth/fhir-term-loader:latest
+docker tag ${DOCKER_IMAGE} ghcr.io/randomenterprisesolutions/fhir-term-loader:${BUILD_ID}
+docker tag ${DOCKER_IMAGE} ghcr.io/randomenterprisesolutions/fhir-term-loader:latest
+docker push ghcr.io/randomenterprisesolutions/fhir-term-loader:${BUILD_ID}
+docker push ghcr.io/randomenterprisesolutions/fhir-term-loader:latest
 
 popd > /dev/null
 

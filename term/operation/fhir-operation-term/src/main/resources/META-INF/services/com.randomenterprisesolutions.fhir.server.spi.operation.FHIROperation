@@ -1,0 +1,7 @@
+com.randomenterprisesolutions.fhir.operation.term.ClosureOperation
+com.randomenterprisesolutions.fhir.operation.term.CodeSystemValidateCodeOperation
+com.randomenterprisesolutions.fhir.operation.term.ExpandOperation
+com.randomenterprisesolutions.fhir.operation.term.LookupOperation
+com.randomenterprisesolutions.fhir.operation.term.SubsumesOperation
+com.randomenterprisesolutions.fhir.operation.term.TranslateOperation
+com.randomenterprisesolutions.fhir.operation.term.ValueSetValidateCodeOperation

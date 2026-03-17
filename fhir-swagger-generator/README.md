@@ -3,7 +3,7 @@
 This module provides classes for generating Swagger and OpenAPI definitions for the FHIR HTTP interface.
 It uses a combination of the HL7-provided specification artifacts and the generated java classes from `fhir-model`.
 
-This module is built into two different jar files. The executable command line interface (cli) version of this module is can also be downloaded directly from [Maven Central](https://repo1.maven.org/maven2/org/linuxforhealth/fhir/fhir-swagger-generator) or is available from the Releases tab.  Alternatively, this jar can be built locally and found in the folder - `fhir-swagger-generator/target`.
+This module is built into two different jar files. The executable command line interface (cli) version of this module is can also be downloaded directly from [Maven Central](https://repo1.maven.org/maven2/com/randomenterprisesolutions/fhir/fhir-swagger-generator) or is available from the Releases tab.  Alternatively, this jar can be built locally and found in the folder - `fhir-swagger-generator/target`.
 
 ## Execute the fhir-swagger-generator command line interface (CLI)
 
@@ -23,10 +23,10 @@ For example, to generate definitions for `read, vread, and history` on the Patie
 java -jar fhir-swagger-generator-4.6.1-cli.jar "Patient(read,vread,history);Contract(create,read,vread,history,search);RiskAssessment(read)"
 ```
 
-To generate Swagger 2.0 definitions instead, execute the org.linuxforhealth.fhir.swagger.generator.FHIRSwaggerGenerator class:
+To generate Swagger 2.0 definitions instead, execute the com.randomenterprisesolutions.fhir.swagger.generator.FHIRSwaggerGenerator class:
 
 ```
-java -cp fhir-swagger-generator-4.6.1-cli.jar org.linuxforhealth.fhir.swagger.generator.FHIRSwaggerGenerator [OPTIONAL FILTER]
+java -cp fhir-swagger-generator-4.6.1-cli.jar com.randomenterprisesolutions.fhir.swagger.generator.FHIRSwaggerGenerator [OPTIONAL FILTER]
 ```
 
 ## Output
@@ -43,7 +43,7 @@ The FHIR API is [notoriously](https://chat.fhir.org/#narrow/stream/179166-implem
 
 Still, the broad adoption of Swagger/OpenAPI in the marketplace has driven a broad awareness and so many IT practitioners expect such an interface definition for all HTTP interfaces. We provide the generators in this module for these tools and practitioners and this has driven some of the key design decisions.
 
-Importantly, the Swagger/OpenAPI definitions generated in this project are NOT a full representation of the full HL7 FHIR HTTP interface, nor of the subset of that API supported by the LinuxForHealth FHIR Server. For example, here are some of the simplifications made to the schema in order to improve approachability from both a tooling and end user standpoint:
+Importantly, the Swagger/OpenAPI definitions generated in this project are NOT a full representation of the full HL7 FHIR HTTP interface, nor of the subset of that API supported by the randomenterprisesolutions FHIR Server. For example, here are some of the simplifications made to the schema in order to improve approachability from both a tooling and end user standpoint:
 * FHIR supports extensions on primitive data types. However, the JSON serialization for that is a bit interesting, and these primitive extensions aren't used much in practice...so the generated swagger omits those.
 * FHIR supports "contained" resources, and so each resource type could technically contain any other resource type within it. However, to properly represent that structure, it would require that every endpoint definition include every single resource and datatype definition in the specification. Instead, we include just the elements for the resource(s) being generated.
 * FHIR choice elements with a type of `*` (like Extension.value[x]) can technically reference any FHIR data type, including rare/obscure ones like those defined at https://www.hl7.org/fhir/metadatatypes.html. For simplicity, we omit these from the swagger definition unless the Resource has an explicit field with this type.

@@ -279,12 +279,12 @@
       }
     },
     "audit": {
-      "serviceClassName": "org.linuxforhealth.fhir.audit.impl.NopService",
+      "serviceClassName": "com.randomenterprisesolutions.fhir.audit.impl.NopService",
       "serviceProperties": {
       }
     },
     "persistence": {
-      "factoryClassname": "org.linuxforhealth.fhir.persistence.blob.FHIRPersistenceJDBCBlobFactory",
+      "factoryClassname": "com.randomenterprisesolutions.fhir.persistence.blob.FHIRPersistenceJDBCBlobFactory",
       "datasources": {
         "default": {
           "type": "postgresql",

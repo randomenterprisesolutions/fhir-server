@@ -6,7 +6,7 @@
     <artifactId>fhir-persistence-jdbc</artifactId>
 
     <parent>
-        <groupId>org.linuxforhealth.fhir</groupId>
+        <groupId>com.randomenterprisesolutions.fhir</groupId>
         <artifactId>fhir-parent</artifactId>
         <version>5.0.0-SNAPSHOT</version>
         <relativePath>../fhir-parent</relativePath>
@@ -139,7 +139,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <systemPropertyVariables>
-                        <org.linuxforhealth.fhir.persistence.jdbc.test.spec.R4JDBCExamplesTest.index>${fhir-persistence-jdbc.index}</org.linuxforhealth.fhir.persistence.jdbc.test.spec.R4JDBCExamplesTest.index>
+                        <com.randomenterprisesolutions.fhir.persistence.jdbc.test.spec.R4JDBCExamplesTest.index>${fhir-persistence-jdbc.index}</com.randomenterprisesolutions.fhir.persistence.jdbc.test.spec.R4JDBCExamplesTest.index>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

@@ -1,6 +1,6 @@
 # IBM FHIR Server - Schema Tool
 
-The LinuxForHealth FHIR Server Schema Tool is designed to create and update the LinuxForHealth FHIR Server's schema idempotently.
+The randomenterprisesolutions FHIR Server Schema Tool is designed to create and update the randomenterprisesolutions FHIR Server's schema idempotently.
 
 The tool supports the following flows in one image: 
 
@@ -44,7 +44,7 @@ The following is read from the properties file:
 | sslrootcert | For Postgres, you must set as /opt/schematool/workarea/db.cert |
 | db.cert | For Postgres, you must set as a base64 encoding of the certificate |
 
-Further, any property supported by the [fhir-persistence-schema](https://github.com/LinuxForHealth/FHIR/blob/main/fhir-persistence-schema/README.md) module is put into the file and mounted to the system.
+Further, any property supported by the [fhir-persistence-schema](https://github.com/randomenterprisesolutions/FHIR/blob/main/fhir-persistence-schema/README.md) module is put into the file and mounted to the system.
 
 ## Configuration file - persistence.json
 The configuration file is as follows in the examples configuration.
@@ -80,13 +80,13 @@ You can run locally using:
 *Mac*
 
 ```
-docker run  --env ENV_TOOL_INPUT=$(cat persistence.json | base64) linuxforhealth/fhir-schematool:latest
+docker run  --env ENV_TOOL_INPUT=$(cat persistence.json | base64) randomenterprisesolutions/fhir-schematool:latest
 ```
 
 *Linux*
 
 ```
-docker run  --env ENV_TOOL_INPUT=$(cat persistence.json | base64 -w 0) linuxforhealth/fhir-schematool:latest
+docker run  --env ENV_TOOL_INPUT=$(cat persistence.json | base64 -w 0) randomenterprisesolutions/fhir-schematool:latest
 ```
 
 An example volume mount: 
@@ -114,7 +114,7 @@ The debug behavior outputs the details of the running image:
 Using an encoded persistence.json
 
 ``` shell
-docker run linuxforhealth/fhir-schematool:latest --tool.behavior=debug
+docker run randomenterprisesolutions/fhir-schematool:latest --tool.behavior=debug
 ```
 
 Output
@@ -139,20 +139,20 @@ Using an encoded persistence.json
 
 ```
 docker run  --env ENV_TOOL_INPUT=`cat examples/postgres/persistence-offboard-example.json |base64` \
-    linuxforhealth/fhir-schematool:latest | tee out.log
+    randomenterprisesolutions/fhir-schematool:latest | tee out.log
 ```
 
 *Linux*
 
 ```
 docker run  --env ENV_TOOL_INPUT=`cat examples/postgres/persistence-offboard-example.json |base64 -w 0` \
-    linuxforhealth/fhir-schematool:latest | tee out.log
+    randomenterprisesolutions/fhir-schematool:latest | tee out.log
 ```
 
 Using arguments on the commandline
 
 ``` shell
-docker run linuxforhealth/fhir-schematool:latest --tool.behavior=offboard --db.host=172.17.0.3 \
+docker run randomenterprisesolutions/fhir-schematool:latest --tool.behavior=offboard --db.host=172.17.0.3 \
     --db.port=50000 --user=postgres --password=change-password --db.database=fhirdb \
     --sslConnection=false --db.type=postgresql --schema.name.fhir=fhirdata --grant.to=fhirserver \
        2>&1 | tee out.log
@@ -166,20 +166,20 @@ Using an encoded persistence.json
 
 ```
 docker run  --env ENV_TOOL_INPUT=`cat examples/postgres/persistence-onboard-example.json |base64` \
-    linuxforhealth/fhir-schematool:latest | tee out.log
+    randomenterprisesolutions/fhir-schematool:latest | tee out.log
 ```
 
 *Linux*
 
 ```
 docker run  --env ENV_TOOL_INPUT=`cat examples/postgres/persistence-onboard-example.json |base64 -w 0` \
-    linuxforhealth/fhir-schematool:latest | tee out.log
+    randomenterprisesolutions/fhir-schematool:latest | tee out.log
 ```
 
 Using arguments on the commandline
 
 ``` shell
-docker run linuxforhealth/fhir-schematool:latest --tool.behavior=onboard --db.host=172.17.0.3 \
+docker run randomenterprisesolutions/fhir-schematool:latest --tool.behavior=onboard --db.host=172.17.0.3 \
     --db.port=50000 --user=postgres --password=change-password --db.database=fhirdb \
     --sslConnection=false --db.type=postgresql --schema.name.fhir=fhirdata --grant.to=fhirserver \
       2>&1 | tee out.log
@@ -188,7 +188,7 @@ docker run linuxforhealth/fhir-schematool:latest --tool.behavior=onboard --db.ho
 ************
 # **License**
 
-The LinuxForHealth FHIR Server - Schema Tool is licensed under the Apache 2.0 license. Full license text is available at [LICENSE](https://github.com/LinuxForHealth/FHIR/blob/main/LICENSE).
+The randomenterprisesolutions FHIR Server - Schema Tool is licensed under the Apache 2.0 license. Full license text is available at [LICENSE](https://github.com/randomenterprisesolutions/FHIR/blob/main/LICENSE).
 
 FHIR® is the registered trademark of HL7 and is used with the permission of HL7. Use of the FHIR trademark does not constitute endorsement of this product by HL7.
 IBM and the IBM logo are trademarks of International Business Machines Corporation, registered in many jurisdictions worldwide. Other product and service names might be trademarks of IBM or other companies. A current list of IBM trademarks is available on [https://ibm.com/trademark](https://ibm.com/trademark).

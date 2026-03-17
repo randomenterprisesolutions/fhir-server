@@ -1,8 +1,8 @@
-# Build and Test the LinuxForHealth FHIR Server
+# Build and Test the randomenterprisesolutions FHIR Server
 
-This `build` directory contains scripts for executing LinuxForHealth FHIR Continous Integration (CI) tests.
+This `build` directory contains scripts for executing randomenterprisesolutions FHIR Continous Integration (CI) tests.
 
-Alternatively, LinuxForHealth FHIR can be built manually from the root of the project using Maven:
+Alternatively, randomenterprisesolutions FHIR can be built manually from the root of the project using Maven:
 ```sh
 mvn clean install -f fhir-examples
 
@@ -12,9 +12,9 @@ mvn clean install -f fhir-parent
 The latter command will execute the unit tests for each module.
 If you want to skip the tests, add `-DskipTests` to the end of the command.
 
-Once the project is built, the LinuxForHealth FHIR Server container image can be built from the Dockerfile under fhir-install:
+Once the project is built, the randomenterprisesolutions FHIR Server container image can be built from the Dockerfile under fhir-install:
 ```sh
-docker build fhir-install -t linuxforhealth/fhir-server
+docker build fhir-install -t randomenterprisesolutions/fhir-server
 ```
 
 ## Running the integration tests locally
@@ -47,7 +47,7 @@ From the root of the project (aka the "WORKSPACE"):
 
 ## Running the integraiton tests using docker compose
 
-Steps to run a dockerized LinuxForHealth FHIR Server and associated services.
+Steps to run a dockerized randomenterprisesolutions FHIR Server and associated services.
 The specific services to run are defined in the docker-compose.yml files within the corresponding "environment" directories:
 
 Directory Name | Environment Description
@@ -60,7 +60,7 @@ The commands are expected to work on MacOS and/or Linux.
 ### Prerequisites
 
 - [Docker](https://www.docker.com)
-- `linuxforhealth/fhir-server:latest` (built from the fhir-install module as described above)
+- `randomenterprisesolutions/fhir-server:latest` (built from the fhir-install module as described above)
 
 ### Run
 

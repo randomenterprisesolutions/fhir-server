@@ -1,0 +1,5 @@
+com.randomenterprisesolutions.fhir.operation.bulkdata.ImportOperation
+com.randomenterprisesolutions.fhir.operation.bulkdata.ExportOperation
+com.randomenterprisesolutions.fhir.operation.bulkdata.PatientExportOperation
+com.randomenterprisesolutions.fhir.operation.bulkdata.GroupExportOperation
+com.randomenterprisesolutions.fhir.operation.bulkdata.StatusOperation

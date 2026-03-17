@@ -3,24 +3,24 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.linuxforhealth.fhir</groupId>
+    <groupId>com.randomenterprisesolutions.fhir</groupId>
     <artifactId>fhir-parent</artifactId>
     <version>5.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>LinuxForHealth FHIR</name>
+    <name>randomenterprisesolutions FHIR</name>
 
-    <url>https://github.com/LinuxForHealth/fhir</url>
+    <url>https://github.com/randomenterprisesolutions/fhir-server</url>
     <organization>
-        <name>LinuxForHealth</name>
-        <url>https://github.com/LinuxForHealth/fhir</url>
+        <name>randomenterprisesolutions</name>
+        <url>https://github.com/randomenterprisesolutions/fhir-server</url>
     </organization>
     <issueManagement>
-        <url>https://github.com/LinuxForHealth/fhir/issues</url>
+        <url>https://github.com/randomenterprisesolutions/fhir-server/issues</url>
     </issueManagement>
     <ciManagement>
-        <url>https://github.com/LinuxForHealth/fhir/actions</url>
+        <url>https://github.com/randomenterprisesolutions/fhir-server/actions</url>
     </ciManagement>
-    <description>The LinuxForHealth FHIR® Server is a modular Java implementation of version 4 of the HL7 FHIR specification with a focus on performance and configurability.</description>
+    <description>The randomenterprisesolutions FHIR® Server is a modular Java implementation of version 4 of the HL7 FHIR specification with a focus on performance and configurability.</description>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
@@ -949,7 +949,7 @@
                         <show>package</show>
                         <!-- verbose if you are debugging -->
                         <verbose>false</verbose>
-                        <dependencySourceIncludes>org.linuxforhealth.fhir:*</dependencySourceIncludes>
+                        <dependencySourceIncludes>com.randomenterprisesolutions.fhir:*</dependencySourceIncludes>
                         <minmemory>2g</minmemory>
                         <maxmemory>2g</maxmemory>
                         <!-- doclint is none, otherwise build breaks -->
@@ -957,7 +957,7 @@
                         <detectLinks>true</detectLinks>
                         <!-- control display -->
                         <author>false</author>
-                        <windowtitle>LinuxForHealth FHIR Server</windowtitle>
+                        <windowtitle>randomenterprisesolutions FHIR Server</windowtitle>
                         <doctitle>${project.name} ${project.version}</doctitle>
                         <additionalOptions>
                             <!-- makes the frames visible, disabled and going
@@ -966,8 +966,8 @@
                             <!-- Fixes the undefined redirect in search -->
                             <additionalOption>--no-module-directories</additionalOption>
                         </additionalOptions>
-                        <header><![CDATA[<a href="/FHIR" class="bx--header__name" target="_parent"><span>LinuxForHealth</span>&nbsp;FHIR®&nbsp;Server</a>]]></header>
-                        <bottom><![CDATA[Copyright 2019, 2022. <a href="http://www.ibm.com">IBM Corporation</a><br/>FHIR&reg; is the registered trademark of HL7 and is used with the permission of HL7.]]></bottom>
+                        <header><![CDATA[<a href="/FHIR" class="bx--header__name" target="_parent"><span>randomenterprisesolutions</span>&nbsp;FHIR®&nbsp;Server</a>]]></header>
+                        <bottom><![CDATA[Copyright 2019, 2022 IBM Corporation; Copyright 2022, 2026 randomenterprisesolutions.<br/>FHIR&reg; is the registered trademark of HL7 and is used with the permission of HL7.]]></bottom>
                         <author>false</author>
                         <stylesheetfile>${project.build.directory}/../../fhir-parent/src/javadocs/stylesheet.css</stylesheetfile>
                         <!-- skips the three entries -->
@@ -1041,8 +1041,8 @@
     </build>
 
     <scm>
-        <connection>scm:git:https://github.com/LinuxForHealth/fhir.git</connection>
-        <url>https://github.com/LinuxForHealth/fhir.git</url>
+        <connection>scm:git:https://github.com/randomenterprisesolutions/fhir-server.git</connection>
+        <url>https://github.com/randomenterprisesolutions/fhir-server.git</url>
     </scm>
 
     <profiles>
@@ -1095,7 +1095,7 @@
                                         </pluginExecution>
                                         <pluginExecution>
                                             <pluginExecutionFilter>
-                                                <groupId>org.linuxforhealth.fhir</groupId>
+                                                <groupId>com.randomenterprisesolutions.fhir</groupId>
                                                 <artifactId>
                                                     fhir-tools
                                                 </artifactId>
@@ -1263,7 +1263,7 @@
                             <show>package</show>
                             <!-- verbose if you are debugging -->
                             <verbose>false</verbose>
-                            <dependencySourceIncludes>org.linuxforhealth.fhir:*</dependencySourceIncludes>
+                            <dependencySourceIncludes>com.randomenterprisesolutions.fhir:*</dependencySourceIncludes>
                             <minmemory>2g</minmemory>
                             <maxmemory>2g</maxmemory>
                             <!-- doclint is none, otherwise build breaks -->
@@ -1271,7 +1271,7 @@
                             <detectLinks>true</detectLinks>
                             <!-- control display -->
                             <author>false</author>
-                            <windowtitle>LinuxForHealth FHIR Server</windowtitle>
+                            <windowtitle>randomenterprisesolutions FHIR Server</windowtitle>
                             <doctitle>${project.name} ${project.version}</doctitle>
                             <additionalOptions>
                                 <!-- makes the frames visible, disabled and
@@ -1280,8 +1280,8 @@
                                 <!-- Fixes the undefined redirect in search -->
                                 <additionalOption>--no-module-directories</additionalOption>
                             </additionalOptions>
-                            <header><![CDATA[<a href="/FHIR" class="bx--header__name" target="_parent"><span>LinuxForHealth</span>&nbsp;FHIR®&nbsp;Server</a>]]></header>
-                            <bottom><![CDATA[Copyright 2019, 2022. <a href="http://www.ibm.com">IBM Corporation</a><br/>FHIR&reg; is the registered trademark of HL7 and is used with the permission of HL7.]]></bottom>
+                            <header><![CDATA[<a href="/FHIR" class="bx--header__name" target="_parent"><span>randomenterprisesolutions</span>&nbsp;FHIR®&nbsp;Server</a>]]></header>
+                            <bottom><![CDATA[Copyright 2019, 2022 IBM Corporation; Copyright 2022, 2026 randomenterprisesolutions.<br/>FHIR&reg; is the registered trademark of HL7 and is used with the permission of HL7.]]></bottom>
                             <author>false</author>
                             <stylesheetfile>${project.build.directory}/../../fhir-parent/src/javadocs/stylesheet.css</stylesheetfile>
                             <!-- skips the three entries -->
@@ -1304,48 +1304,7 @@
             </build>
         </profile>
         <profile>
-            <id>sign-artifact</id>
-            <properties>
-                <gpg.keyname>${env.GPG_KEYNAME}</gpg.keyname>
-                <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
-            </properties>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>3.0.1</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                        <configuration>
-                            <defaultKeyring>false</defaultKeyring>
-                            <gpgArguments>
-                                <gpgArgument>--batch</gpgArgument>
-                                <gpgArgument>--yes</gpgArgument>
-                                <gpgArgument>--no-tty</gpgArgument>
-                                <gpgArgument>--lock-multiple</gpgArgument>
-                                <!-- important not to have spaces in the args -->
-                                <gpgArgument>--pinentry-mode</gpgArgument>
-                                <gpgArgument>loopback</gpgArgument>
-                            </gpgArguments>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        <profile>
             <id>build-artifact</id>
-            <properties>
-                <gpg.keyname>${env.GPG_KEYNAME}</gpg.keyname>
-                <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
-            </properties>
             <build>
                 <plugins>
                     <plugin>
@@ -1392,77 +1351,6 @@
                     </plugin>
                 </plugins>
             </build>
-        </profile>
-        <profile>
-            <id>deploy-to-sonatype</id>
-            <properties>
-                <maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
-            </properties>
-
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.13</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <serverId>ossrh</serverId>
-                            <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>false</autoReleaseAfterClose>
-                        </configuration>
-                    </plugin>
-                    <!-- plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-install-plugin</artifactId>
-                        <version>3.0.0-M1</version>
-                        <executions>
-                            <execution>
-                                <id>default-install</id>
-                                <configuration>
-                                    <skip>true</skip>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>default-test</id>
-                                <configuration>
-                                    <skip>true</skip>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-jar-plugin</artifactId>
-                        <version>3.2.2</version>
-                        <executions>
-                            <execution>
-                                <id>default-jar</id>
-                                <configuration>
-                                    <skip>true</skip>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>default-test</id>
-                                <configuration>
-                                    <skip>true</skip>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin-->
-                </plugins>
-            </build>
-
-            <distributionManagement>
-                <snapshotRepository>
-                    <id>ossrh</id>
-                    <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
-                </snapshotRepository>
-                <repository>
-                    <id>ossrh</id>
-                    <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-                </repository>
-            </distributionManagement>
         </profile>
 
         <!-- removes unnecessary whitespace from json files while copying from src/main/resources to target -->
@@ -1519,7 +1407,7 @@
                     <show>package</show>
                     <!-- verbose if you are debugging -->
                     <verbose>false</verbose>
-                    <dependencySourceIncludes>org.linuxforhealth.fhir:*</dependencySourceIncludes>
+                    <dependencySourceIncludes>com.randomenterprisesolutions.fhir:*</dependencySourceIncludes>
                     <minmemory>2g</minmemory>
                     <maxmemory>2g</maxmemory>
                     <!-- doclint is none, otherwise build breaks -->
@@ -1527,7 +1415,7 @@
                     <detectLinks>true</detectLinks>
                     <!-- control display -->
                     <author>false</author>
-                    <windowtitle>LinuxForHealth FHIR Server</windowtitle>
+                    <windowtitle>randomenterprisesolutions FHIR Server</windowtitle>
                     <doctitle>${project.name} ${project.version}</doctitle>
                     <additionalOptions>
                         <!-- makes the frames visible, disabled and going
@@ -1536,8 +1424,8 @@
                         <!-- Fixes the undefined redirect in search -->
                         <additionalOption>--no-module-directories</additionalOption>
                     </additionalOptions>
-                    <header><![CDATA[<a href="/FHIR" class="bx--header__name" target="_parent"><span>LinuxForHealth</span>&nbsp;FHIR®&nbsp;Server</a>]]></header>
-                    <bottom><![CDATA[Copyright 2019, 2022. <a href="http://www.ibm.com">IBM Corporation</a><br/>FHIR&reg; is the registered trademark of HL7 and is used with the permission of HL7.]]></bottom>
+                    <header><![CDATA[<a href="/FHIR" class="bx--header__name" target="_parent"><span>randomenterprisesolutions</span>&nbsp;FHIR®&nbsp;Server</a>]]></header>
+                    <bottom><![CDATA[Copyright 2019, 2022 IBM Corporation; Copyright 2022, 2026 randomenterprisesolutions.<br/>FHIR&reg; is the registered trademark of HL7 and is used with the permission of HL7.]]></bottom>
                     <author>false</author>
                     <stylesheetfile>${project.build.directory}/../../fhir-parent/src/javadocs/stylesheet.css</stylesheetfile>
                     <!-- skips the three entries -->
