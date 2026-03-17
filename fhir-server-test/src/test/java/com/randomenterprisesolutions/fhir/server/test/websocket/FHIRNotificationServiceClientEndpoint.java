@@ -30,8 +30,6 @@ import javax.websocket.MessageHandler;
 import javax.websocket.Session;
 import javax.websocket.WebSocketContainer;
 
-import org.glassfish.tyrus.core.CloseReasons;
-
 import com.randomenterprisesolutions.fhir.server.notification.FHIRNotificationEvent;
 import com.randomenterprisesolutions.fhir.server.notification.FHIRNotificationUtil;
 
@@ -112,7 +110,7 @@ public class FHIRNotificationServiceClientEndpoint extends Endpoint {
     public void close() {
         try {
             // Forcing the close of the system.
-            initSession.close(CloseReasons.GOING_AWAY.getCloseReason());
+            initSession.close(new CloseReason(CloseReason.CloseCodes.GOING_AWAY, "client requested close"));
         } catch (IOException e) {
             System.err.println(">>> Issue closing the session");
             e.printStackTrace();
