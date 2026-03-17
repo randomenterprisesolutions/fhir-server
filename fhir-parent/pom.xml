@@ -648,7 +648,7 @@
             <dependency>
                 <groupId>org.opencds.cqf.cql</groupId>
                 <artifactId>engine</artifactId>
-                <version>1.5.4</version>
+                <version>1.5.2</version>
                 <exclusions>
                     <exclusion>
                         <groupId>com.google.code.javaparser</groupId>
@@ -659,7 +659,7 @@
             <dependency>
                 <groupId>info.cqframework</groupId>
                 <artifactId>cql-to-elm</artifactId>
-                <version>3.26.0</version>
+                <version>1.5.12</version>
                 <exclusions>
                     <exclusion>
                         <groupId>com.google.code.javaparser</groupId>
