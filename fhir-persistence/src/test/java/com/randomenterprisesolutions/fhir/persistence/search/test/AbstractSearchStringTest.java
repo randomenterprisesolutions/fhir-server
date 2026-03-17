@@ -1,6 +1,6 @@
 /*
  * (C) Copyright IBM Corp. 2018, 2021
- *
+ * (C) Copyright Random Enterprise Solutions 2026
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -162,6 +162,43 @@ public abstract class AbstractSearchStringTest extends AbstractPLSearchTest {
         assertSearchReturnsSavedResource("HumanName", "Gigio");
         assertSearchReturnsSavedResource("HumanName", "II");
         assertSearchReturnsSavedResource("HumanName", "Topo Gigio");
+    }
+
+    @Test
+    public void testSearchString_HumanName_unicode() throws Exception {
+        /*
+        "given": ["Hans"],
+        "family": "Müller",
+        "text": "Hans Müller"
+        */
+        // Exact match with diacritics
+        assertSearchReturnsSavedResource("HumanNameLatin", "Müller");
+        assertSearchReturnsSavedResource("HumanNameLatin", "Hans");
+        // Prefix match stripping diacritics (normalizeForSearch must be applied at write AND read time)
+        assertSearchReturnsSavedResource("HumanNameLatin", "Muller");
+        assertSearchReturnsSavedResource("HumanNameLatin", "muller");
+        assertSearchReturnsSavedResource("HumanNameLatin", "Hans Muller");
+        // Exact modifier should NOT match diacritic-stripped form
+        assertSearchDoesntReturnSavedResource("HumanNameLatin:exact", "Muller");
+    }
+
+    @Test
+    public void testSearchString_HumanName_japanese() throws Exception {
+        /*
+        "given": ["太郎"],
+        "family": "田中",
+        "text": "田中 太郎"
+        */
+        // CJK characters pass through normalizeForSearch unchanged (no diacritics)
+        assertSearchReturnsSavedResource("HumanNameCJK", "田中");
+        assertSearchReturnsSavedResource("HumanNameCJK", "太郎");
+        assertSearchReturnsSavedResource("HumanNameCJK", "田中 太郎");
+        // Prefix match on family
+        assertSearchReturnsSavedResource("HumanNameCJK:exact", "田中");
+        // Contains match on middle of text value
+        assertSearchReturnsSavedResource("HumanNameCJK:contains", "中 太");
+        // Non-matching value should not return
+        assertSearchDoesntReturnSavedResource("HumanNameCJK", "鈴木");
     }
 
     @Test
