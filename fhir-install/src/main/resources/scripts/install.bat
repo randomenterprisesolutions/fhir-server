@@ -7,8 +7,6 @@
 
 SETLOCAL ENABLEDELAYEDEXPANSION
 
-set LIBERTY_VERSION=22.0.0.12
-
 echo Executing %0 to deploy the fhir-server web application...
 
 @REM Make sure that JAVA_HOME is set
@@ -62,7 +60,18 @@ if not exist %WLP_INSTALL_DIR% (
 
 @REM Unzip liberty runtime zip
 echo Extracting the Liberty runtime...
-call :UnZip  %BASEDIR%\openliberty-runtime-%LIBERTY_VERSION%.zip\  %WLP_INSTALL_DIR%
+set LIBERTY_ZIP=
+if not exist "%BASEDIR%\openliberty-runtime-*.zip" (
+    set rc=1
+    echo Error locating bundled Liberty runtime zip under %BASEDIR%
+    goto :exit
+)
+
+for %%F in ("%BASEDIR%\openliberty-runtime-*.zip") do (
+    if not defined LIBERTY_ZIP set LIBERTY_ZIP=%%~fF
+)
+
+call :UnZip "%LIBERTY_ZIP%" "%WLP_INSTALL_DIR%"
 if %rc% neq 0 (
     echo Error extracting liberty runtime: %rc%
     goto :exit
@@ -119,8 +128,8 @@ goto :exit
 set vbs="%temp%\_.vbs"
 if exist %vbs% del /f /q %vbs%
 >%vbs% echo Set fso = CreateObject("Scripting.FileSystemObject")
->>%vbs% echo strDest = "%2"
->>%vbs% echo strZipFileName = "%1"
+>>%vbs% echo strDest = "%~2"
+>>%vbs% echo strZipFileName = "%~1"
 >>%vbs% echo If NOT fso.FolderExists(strDest) Then
 >>%vbs% echo     fso.CreateFolder(strDest)
 >>%vbs% echo End If

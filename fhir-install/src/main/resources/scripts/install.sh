@@ -5,8 +5,6 @@
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################################
 
-export LIBERTY_VERSION="22.0.0.12"
-
 echo "
 Executing $0 to deploy the fhir-server web application...
 "
@@ -44,7 +42,12 @@ If the installation directory exists then it must contain a valid Liberty runtim
 else
     # If the liberty install directory doesn't exist, then create it.
     echo "Extracting the Liberty runtime... "
-    unzip -qq ${basedir}/openliberty-runtime-${LIBERTY_VERSION}.zip -d ${LIBERTY_INSTALL_DIR}
+    LIBERTY_ZIP=$(find "${basedir}" -maxdepth 1 -name 'openliberty-runtime-*.zip' | head -n 1)
+    if [ -z "${LIBERTY_ZIP}" ]; then
+        echo "Error locating bundled Liberty runtime zip under ${basedir}"
+        exit 1
+    fi
+    unzip -qq "${LIBERTY_ZIP}" -d ${LIBERTY_INSTALL_DIR}
     rc=$?
     if [ $rc != 0 ]; then
         echo "Error extracting liberty runtime: $rc"
