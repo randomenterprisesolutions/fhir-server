@@ -2,6 +2,7 @@
 
 ###############################################################################
 # (C) Copyright IBM Corp. 2021, 2022
+# (C) Copyright Random Enterprise Solutions 2026
 #
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################################
@@ -65,8 +66,14 @@ bringup() {
     echo "Bringing up containers >>> Current time: " $(date)
     # Startup db
     docker compose up --remove-orphans -d db
+    dbContainerId=$(docker compose ps -q db)
+    if [ -z "${dbContainerId}" ]
+    then
+        echo "Failed to resolve db container id from docker compose"
+        exit 1
+    fi
     cx=0
-    while [ $(docker container inspect postgres_db_1 | jq -r '.[] | select (.Config.Hostname == "postgres").State.Status' | wc -l) -gt 0 ] && [ $(docker container inspect postgres_db_1 | jq -r '.[] | select (.Config.Hostname == "postgres").State.Running' | grep false | wc -l) -eq 1 ]
+    while [ $(docker container inspect ${dbContainerId} | jq -r '.[] | select (.Config.Hostname == "postgres").State.Status' | wc -l) -gt 0 ] && [ $(docker container inspect ${dbContainerId} | jq -r '.[] | select (.Config.Hostname == "postgres").State.Running' | grep false | wc -l) -eq 1 ]
     do
         echo "Waiting on startup of db ${cx}"
         cx=$((cx + 1))
@@ -79,8 +86,14 @@ bringup() {
 
     # Startup FHIR
     docker compose up --remove-orphans -d fhir
+    fhirContainerId=$(docker compose ps -q fhir)
+    if [ -z "${fhirContainerId}" ]
+    then
+        echo "Failed to resolve fhir container id from docker compose"
+        exit 1
+    fi
     cx=0
-    while [ $(docker container inspect postgres_fhir_1 | jq -r '.[] | select (.Config.Hostname == "fhir").State.Status' | wc -l) -gt 0 ] && [ $(docker container inspect postgres_fhir_1 | jq -r '.[] | select (.Config.Hostname == "fhir").State.Running' | grep false | wc -l) -eq 1 ]
+    while [ $(docker container inspect ${fhirContainerId} | jq -r '.[] | select (.Config.Hostname == "fhir").State.Status' | wc -l) -gt 0 ] && [ $(docker container inspect ${fhirContainerId} | jq -r '.[] | select (.Config.Hostname == "fhir").State.Running' | grep false | wc -l) -eq 1 ]
     do
         echo "Waiting on startup of fhir ${cx}"
         cx=$((cx + 1))
@@ -103,7 +116,7 @@ bringup() {
     Docker container status:"
     docker ps -a
 
-    containerId=$(docker ps -a | grep fhir-server | cut -d ' ' -f 1)
+    containerId=$(docker compose ps -q fhir)
     if [[ -z "${containerId}" ]]
     then
         echo "Warning: Could not find the fhir container!!!"

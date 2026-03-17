@@ -2,6 +2,7 @@
 
 ###############################################################################
 # (C) Copyright IBM Corp. 2020, 2022
+# (C) Copyright Random Enterprise Solutions 2026
 #
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################################
@@ -157,7 +158,7 @@ bringup_fhir(){
     Docker container status:"
     docker ps -a
 
-    containerId=$(docker ps -a | grep fhir | cut -d ' ' -f 1)
+    containerId=$(docker compose ps -q fhir-server)
     if [[ -z "${containerId}" ]]; then
         echo "Warning: Could not find the fhir container!!!"
     else

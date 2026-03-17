@@ -2,6 +2,7 @@
 
 ###############################################################################
 # (C) Copyright IBM Corp. 2021, 2022
+# (C) Copyright Random Enterprise Solutions 2026
 #
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################################
@@ -51,10 +52,16 @@ bringup() {
     echo "Bringing up containers"
     docker compose up --remove-orphans -d
     echo ">>> Current time: $(date)"
+    fhirContainerId=$(docker compose ps -q fhir)
+    if [ -z "${fhirContainerId}" ]
+    then
+        echo "Failed to resolve fhir container id from docker compose"
+        exit 1
+    fi
 
     # Startup FHIR
     cx=0
-    while [ $(docker container inspect derby_fhir_1 | jq -r '.[] | select (.Config.Hostname == "fhir").State.Status' | wc -l) -gt 0 ] && [ $(docker container inspect derby_fhir_1 | jq -r '.[] | select (.Config.Hostname == "fhir").State.Running' | grep false | wc -l) -eq 1 ]
+    while [ $(docker container inspect ${fhirContainerId} | jq -r '.[] | select (.Config.Hostname == "fhir").State.Status' | wc -l) -gt 0 ] && [ $(docker container inspect ${fhirContainerId} | jq -r '.[] | select (.Config.Hostname == "fhir").State.Running' | grep false | wc -l) -eq 1 ]
     do
         echo "Waiting on startup of fhir ${cx}"
         cx=$((cx + 1))
@@ -75,7 +82,7 @@ bringup() {
     echo "Docker container status:"
     docker ps -a
 
-    containerId=$(docker ps -a | grep derby_fhir_1 | cut -d ' ' -f 1)
+    containerId=$(docker compose ps -q fhir)
     if [ -z "${containerId}" ]
     then
         echo "Warning: Could not find the fhir container!!!"

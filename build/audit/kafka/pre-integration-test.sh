@@ -2,6 +2,7 @@
 
 ###############################################################################
 # (C) Copyright IBM Corp. 2020, 2022
+# (C) Copyright Random Enterprise Solutions 2026
 #
 # SPDX-License-Identifier: Apache-2.0
 ###############################################################################
@@ -77,7 +78,7 @@ bringup(){
     Docker container status:"
     docker ps -a
 
-    containerId=$(docker ps -a | grep fhir-server | cut -d ' ' -f 1)
+    containerId=$(docker compose ps -q fhir-server)
     if [[ -z "${containerId}" ]]; then
         echo "Warning: Could not find the fhir container!!!"
     else
@@ -90,17 +91,17 @@ bringup(){
         docker cp -L ${containerId}:/logs ${pre_it_logs}
     fi
 
-    kafkaContainerId=$(docker ps -a | grep kafka-1 | cut -d ' ' -f 1)
+    kafkaContainerId=$(docker compose ps -q kafka-1)
     if [[ -z "${kafkaContainerId}" ]]; then
         echo "Warning: Could not find the kafka-1 container!!!"
     else
-        echo "kafka-1 id: ${containerId}"
+        echo "kafka-1 id: ${kafkaContainerId}"
         # Grab the container's console log
         docker logs ${kafkaContainerId}
 
     fi
 
-    kafka2ContainerId=$(docker ps -a | grep kafka-2 | cut -d ' ' -f 1)
+    kafka2ContainerId=$(docker compose ps -q kafka-2)
     if [[ -z "${kafka2ContainerId}" ]]; then
         echo "Warning: Could not find the kafka-2 container!!!"
     else
