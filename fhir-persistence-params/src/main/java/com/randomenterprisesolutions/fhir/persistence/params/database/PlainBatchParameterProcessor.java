@@ -1,6 +1,6 @@
 /*
  * (C) Copyright IBM Corp. 2022
- *
+ * (C) Copyright Random Enterprise Solutions 2026
  * SPDX-License-Identifier: Apache-2.0
  */
  
@@ -30,6 +30,7 @@ import com.randomenterprisesolutions.fhir.persistence.index.StringParameter;
 import com.randomenterprisesolutions.fhir.persistence.index.TagParameter;
 import com.randomenterprisesolutions.fhir.persistence.index.TokenParameter;
 import com.randomenterprisesolutions.fhir.persistence.params.api.IBatchParameterProcessor;
+import com.randomenterprisesolutions.fhir.search.util.SearchHelper;
 import com.randomenterprisesolutions.fhir.persistence.params.model.CodeSystemValue;
 import com.randomenterprisesolutions.fhir.persistence.params.model.CommonCanonicalValue;
 import com.randomenterprisesolutions.fhir.persistence.params.model.CommonTokenValue;
@@ -159,7 +160,7 @@ public class PlainBatchParameterProcessor implements IBatchParameterProcessor {
         try {
             PlainPostgresParameterBatch dao = getParameterBatchDao(resourceType);
             final String strValue = parameter.getValue();
-            final String strValueLower = strValue != null ? strValue.toLowerCase() : null;
+            final String strValueLower = strValue != null ? SearchHelper.normalizeForSearch(strValue) : null;
             dao.addString(logicalResourceId, parameterNameValue.getParameterNameId(), strValue, strValueLower, parameter.getCompositeId());
 
             if (parameter.isSystemParam()) {

@@ -36,6 +36,22 @@
         "suffix": ["II"],
         "text": "Topo Gigio"
       }
+    },
+    {
+      "url": "http://example.org/HumanNameLatin",
+      "valueHumanName": {
+        "given": ["Hans"],
+        "family": "Müller",
+        "text": "Hans Müller"
+      }
+    },
+    {
+      "url": "http://example.org/HumanNameCJK",
+      "valueHumanName": {
+        "given": ["太郎"],
+        "family": "田中",
+        "text": "田中 太郎"
+      }
     }
   ]
 }
