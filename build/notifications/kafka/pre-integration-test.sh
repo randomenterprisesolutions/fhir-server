@@ -76,7 +76,7 @@ bringup(){
     Docker container status:"
     docker ps -a
 
-    containerId=$(docker compose ps -q fhir-server)
+    containerId=$(docker ps -q --filter name=fhir-server --filter status=running | head -1)
     if [[ -z "${containerId}" ]]; then
         echo "Warning: Could not find the fhir container!!!"
     else

@@ -78,7 +78,7 @@ bringup(){
     Docker container status:"
     docker ps -a
 
-    containerId=$(docker compose ps -q fhir-server)
+    containerId=$(docker ps -q --filter name=fhir-server --filter status=running | head -1)
     if [[ -z "${containerId}" ]]; then
         echo "Warning: Could not find the fhir container!!!"
     else
@@ -91,7 +91,7 @@ bringup(){
         docker cp -L ${containerId}:/logs ${pre_it_logs}
     fi
 
-    kafkaContainerId=$(docker compose ps -q kafka-1)
+    kafkaContainerId=$(docker ps -q --filter name=kafka-1 --filter status=running | head -1)
     if [[ -z "${kafkaContainerId}" ]]; then
         echo "Warning: Could not find the kafka-1 container!!!"
     else
@@ -101,7 +101,7 @@ bringup(){
 
     fi
 
-    kafka2ContainerId=$(docker compose ps -q kafka-2)
+    kafka2ContainerId=$(docker ps -q --filter name=kafka-2 --filter status=running | head -1)
     if [[ -z "${kafka2ContainerId}" ]]; then
         echo "Warning: Could not find the kafka-2 container!!!"
     else

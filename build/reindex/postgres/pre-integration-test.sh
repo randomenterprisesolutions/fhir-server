@@ -116,7 +116,7 @@ bringup() {
     Docker container status:"
     docker ps -a
 
-    containerId=$(docker compose ps -q fhir)
+    containerId=${fhirContainerId}
     if [[ -z "${containerId}" ]]
     then
         echo "Warning: Could not find the fhir container!!!"
