@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app id="AdminWebApp_ID" version="4.0"
+    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
+
+    <display-name>FHIR Admin API</display-name>
+
+    <servlet>
+        <servlet-name>AdminRestServlet</servlet-name>
+        <servlet-class>com.ibm.websphere.jaxrs.server.IBMRestServlet</servlet-class>
+        <init-param>
+            <param-name>javax.ws.rs.Application</param-name>
+            <param-value>com.randomenterprisesolutions.fhir.admin.AdminApplication</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AdminRestServlet</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
+    <!--
+        HTTP Basic authentication — same scheme used by the main FHIR server.
+        Credentials are validated against the Liberty basicRegistry where
+        fhiradmin is a member of the FHIRAdmins group.
+    -->
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>FHIRAdminRealm</realm-name>
+    </login-config>
+
+    <security-role>
+        <role-name>FHIRAdmins</role-name>
+    </security-role>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Admin API</web-resource-name>
+            <url-pattern>/admin/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>FHIRAdmins</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <!-- Require TLS; set to NONE only during local development -->
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+
+</web-app>

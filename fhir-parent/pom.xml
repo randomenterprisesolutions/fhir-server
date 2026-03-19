@@ -110,6 +110,7 @@
         <module>../fhir-server-spi</module>
         <module>../fhir-server</module>
         <module>../fhir-server-webapp</module>
+        <module>../fhir-admin-webapp</module>
         <module>../fhir-server-test</module>
         <module>../fhir-smart</module>
         <module>../fhir-bucket</module>
