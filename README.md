@@ -95,6 +95,7 @@ The randomenterprisesolutions FHIR Server is modular and extensible. The followi
 |fhir-provider|JAX-RS Providers for FHIR XML and JSON and related patch formats|false|
 |fhir-server|JAX-RS resources and related classes for implementing the FHIR REST API and extended operations|false|
 |fhir-server-webapp|A web application that packages the fhir-server with a set of built-in extended operations|false|
+|fhir-admin-webapp|A separate web application exposing a REST Admin API for dynamic tenant lifecycle management (create, update, delete, reload). Runs on a dedicated admin port (default: 9444) with HTTP Basic or JWT Bearer auth. See [fhir-admin-webapp/README.md](fhir-admin-webapp/README.md).|false|
 |fhir-server-test|End-to-end integration tests for testing a running server|false|
 |fhir-smart|An interceptor that provides SMART-on-FHIR authorization policy enforcement|false|
 

@@ -1,0 +1,407 @@
+openapi: "3.0.3"
+
+info:
+  title: FHIR Admin API
+  version: "1.0.0"
+  description: |
+    REST API for dynamic tenant lifecycle management in the FHIR server.
+    This API replaces the file-based tenant configuration system described in
+    `fhir-admin-webapp/README.md`.
+
+    **Security:** All endpoints require the `FHIRAdmins` role and support two
+    authentication mechanisms (usable side-by-side):
+
+    * **HTTP Basic** — supply credentials for the `fhiradmin` user (or any user
+      in the `FHIRAdmins` Liberty `basicRegistry` group). Password is set via
+      the `FHIR_ADMIN_PASSWORD` environment variable.
+
+    * **JWT Bearer** — present a token whose `scope` claim contains
+      `fhir_admin`.  Liberty's mpJwt maps that scope to the `FHIRAdmins` role.
+      Enable by moving `configDropins/disabled/jwtRS.xml` to
+      `configDropins/overrides/` and supplying the three
+      `FHIR_ADMIN_JWT_*` environment variables.  See `README.md` for details.
+
+    Do **not** expose this API on the same listener as the FHIR API.
+  contact:
+    name: randomenterprisesolutions FHIR team
+    url: https://github.com/randomenterprisesolutions/fhir-server
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+
+servers:
+  - url: https://{host}:{port}
+    description: Admin server (separate from the FHIR API port)
+    variables:
+      host:
+        default: localhost
+      port:
+        default: "9444"
+
+tags:
+  - name: tenants
+    description: Tenant lifecycle management
+
+paths:
+
+  /admin/tenants:
+
+    post:
+      tags: [tenants]
+      operationId: createTenant
+      summary: Create a new tenant
+      description: |
+        Registers a new tenant and provisions the FHIR persistence
+        schema on the configured datastore. Returns `409 Conflict` if a tenant
+        with the same `tenantId` already exists.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenantRequest'
+            examples:
+              postgresql:
+                summary: PostgreSQL-backed tenant
+                value:
+                  tenantId: acme
+                  displayName: Acme Corp
+                  datastoreType: postgresql
+                  datastoreHost: db.acme.internal
+                  datastorePort: 5432
+                  datastoreDatabase: fhir_acme
+              derby:
+                summary: Embedded Derby tenant (dev/test)
+                value:
+                  tenantId: dev-tenant
+                  datastoreType: derby
+      responses:
+        "201":
+          description: Tenant created successfully
+          headers:
+            Location:
+              description: URL of the newly created tenant resource
+              schema:
+                type: string
+                format: uri
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantConfig'
+        "400":
+          $ref: '#/components/responses/BadRequest'
+        "409":
+          $ref: '#/components/responses/Conflict'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+
+    get:
+      tags: [tenants]
+      operationId: listTenants
+      summary: List all tenants
+      description: Returns all registered tenants, including disabled ones.
+      responses:
+        "200":
+          description: Tenant list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TenantConfig'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+
+  /admin/tenants/{tenantId}:
+
+    parameters:
+      - name: tenantId
+        in: path
+        required: true
+        description: Unique tenant identifier
+        schema:
+          type: string
+          pattern: '^[a-zA-Z0-9_-]{1,64}$'
+          example: acme
+
+    get:
+      tags: [tenants]
+      operationId: getTenant
+      summary: Get a tenant by ID
+      responses:
+        "200":
+          description: Tenant configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantConfig'
+        "404":
+          $ref: '#/components/responses/NotFound'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+
+    put:
+      tags: [tenants]
+      operationId: updateTenant
+      summary: Update a tenant
+      description: |
+        Partially updates a tenant. Only fields present (non-null) in the
+        request body are applied; omitted fields keep their current values.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTenantRequest'
+      responses:
+        "200":
+          description: Updated tenant configuration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantConfig'
+        "404":
+          $ref: '#/components/responses/NotFound'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+
+    delete:
+      tags: [tenants]
+      operationId: deleteTenant
+      summary: Delete a tenant
+      description: |
+        Removes the tenant from the registry. This does **not** drop the
+        datastore schema — use `fhir-persistence-schema` CLI tooling to
+        clean up the underlying database objects if required.
+      responses:
+        "204":
+          description: Tenant deleted
+        "404":
+          $ref: '#/components/responses/NotFound'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+
+  /admin/tenants/{tenantId}/reload:
+
+    parameters:
+      - name: tenantId
+        in: path
+        required: true
+        description: Unique tenant identifier
+        schema:
+          type: string
+          pattern: '^[a-zA-Z0-9_-]{1,64}$'
+          example: acme
+
+    post:
+      tags: [tenants]
+      operationId: reloadTenant
+      summary: Force config-cache reload
+      description: |
+        Signals all cluster nodes to reload the configuration for the given
+        tenant from the backing store, bypassing any in-memory cache TTL.
+        Returns `202 Accepted` immediately; the actual reload is asynchronous.
+      responses:
+        "202":
+          description: Reload signal accepted
+        "404":
+          $ref: '#/components/responses/NotFound'
+        "500":
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+
+  schemas:
+
+    TenantConfig:
+      type: object
+      description: Full tenant configuration record as stored by the admin API.
+      properties:
+        tenantId:
+          type: string
+          pattern: '^[a-zA-Z0-9_-]{1,64}$'
+          description: Unique, immutable tenant identifier.
+          example: acme
+        displayName:
+          type: string
+          description: Human-readable display name.
+          example: Acme Corp
+        datastoreType:
+          type: string
+          description: Persistence backend type.
+          enum: [postgresql, derby, db2, mssql]
+          example: postgresql
+        datastoreHost:
+          type: string
+          description: Datastore connection host (omit for embedded stores).
+          example: db.acme.internal
+        datastorePort:
+          type: integer
+          description: Datastore port; 0 means use the default for the selected type.
+          example: 5432
+        datastoreDatabase:
+          type: string
+          description: Database or schema name.
+          example: fhir_acme
+        fhirServerConfig:
+          type: string
+          description: |
+            Raw JSON string containing the full FHIR server configuration for
+            this tenant (equivalent to a classic `fhir-server-config.json`).
+        enabled:
+          type: boolean
+          description: Whether this tenant is active and can receive FHIR requests.
+          default: true
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          description: ISO-8601 timestamp of when the tenant was registered.
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+          description: ISO-8601 timestamp of the last update.
+
+    CreateTenantRequest:
+      type: object
+      required:
+        - tenantId
+        - datastoreType
+      properties:
+        tenantId:
+          type: string
+          pattern: '^[a-zA-Z0-9_-]{1,64}$'
+          example: acme
+        displayName:
+          type: string
+          example: Acme Corp
+        datastoreType:
+          type: string
+          enum: [postgresql, derby, db2, mssql]
+          example: postgresql
+        datastoreHost:
+          type: string
+          example: db.acme.internal
+        datastorePort:
+          type: integer
+          example: 5432
+        datastoreDatabase:
+          type: string
+          example: fhir_acme
+        fhirServerConfig:
+          type: string
+          description: Optional full FHIR server config JSON for this tenant.
+
+    UpdateTenantRequest:
+      type: object
+      description: |
+        Partial update payload. Only non-null fields are applied; omit any field
+        to leave it unchanged.
+      properties:
+        displayName:
+          type: string
+        datastoreType:
+          type: string
+          enum: [postgresql, derby, db2, mssql]
+        datastoreHost:
+          type: string
+        datastorePort:
+          type: integer
+        datastoreDatabase:
+          type: string
+        fhirServerConfig:
+          type: string
+        enabled:
+          type: boolean
+
+    ApiError:
+      type: object
+      description: Error payload returned when a request cannot be fulfilled.
+      properties:
+        status:
+          type: integer
+          description: HTTP status code (mirrored from the response status line).
+          example: 404
+        error:
+          type: string
+          description: Short error category label.
+          example: Not Found
+        message:
+          type: string
+          description: Human-readable explanation of the specific problem.
+          example: "Tenant 'acme' does not exist"
+
+  responses:
+
+    BadRequest:
+      description: The request body failed validation.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example:
+            status: 400
+            error: Bad Request
+            message: "tenantId is required"
+
+    NotFound:
+      description: The requested tenant does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example:
+            status: 404
+            error: Not Found
+            message: "Tenant 'acme' does not exist"
+
+    Conflict:
+      description: A tenant with the given ID already exists.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example:
+            status: 409
+            error: Conflict
+            message: "Tenant 'acme' already exists"
+
+    InternalServerError:
+      description: An unexpected server error occurred.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+          example:
+            status: 500
+            error: Internal Server Error
+            message: "An unexpected error occurred; see server logs for details"
+
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: |
+        HTTP Basic authentication. The caller must supply credentials for a user
+        that is a member of the `FHIRAdmins` group in the Liberty basicRegistry
+        (e.g. username `fhiradmin`). Always use HTTPS to protect credentials
+        in transit.
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        JWT Bearer token authentication (MicroProfile JWT / mpJwt-1.2).
+        The token must be signed by the configured authorization server and
+        carry the `fhir_admin` scope in its `scope` claim.  Liberty maps
+        that scope to the `FHIRAdmins` application role.
+
+        Enable by moving `src/main/liberty/config/configDropins/disabled/jwtRS.xml`
+        to `configDropins/overrides/` and providing the required environment
+        variables (`FHIR_ADMIN_JWT_JWKS_URI`, `FHIR_ADMIN_JWT_ISSUER`,
+        `FHIR_ADMIN_JWT_AUDIENCES`).
+
+security:
+  - basicAuth: []
+  - bearerAuth: []

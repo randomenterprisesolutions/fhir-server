@@ -69,6 +69,9 @@ services:
         BATCH_DB_PASS: change-password
         BATCH_DB_SSL: "false"
         BATCH_DB_NAME: fhirdb
+        FHIR_ADMIN_DB_URL: "jdbc:postgresql://postgres:5432/fhirdb"
+        FHIR_ADMIN_DB_USER: fhiradmin
+        FHIR_ADMIN_DB_PASSWORD: change-password
     command: bash -c "
       java -jar /opt/fhir-server/tools/fhir-persistence-schema-*-cli.jar
           --db-type postgresql --prop db.host=postgres --prop db.port=5432 --prop db.database=fhirdb --prop user=fhiradmin --prop password=change-password
@@ -79,6 +82,9 @@ services:
       java -jar /opt/fhir-server/tools/fhir-persistence-schema-*-cli.jar
           --db-type postgresql --prop db.host=postgres --prop db.port=5432 --prop db.database=fhirdb --prop user=fhiradmin --prop password=change-password
           --update-schema-batch --grant-to fhirbatch &&
+      java -jar /opt/fhir-server/tools/fhir-persistence-schema-*-cli.jar
+          --db-type postgresql --prop db.host=postgres --prop db.port=5432 --prop db.database=fhirdb --prop user=fhiradmin --prop password=change-password
+          --update-schema-admin &&
       java -jar /opt/fhir-server/tools/fhir-persistence-schema-*-cli.jar
           --db-type derby --prop db.database=/output/derby/profile --prop db.create=Y
           --prop resourceTypes=${TENANT1_PROFILE_RESOURCE_TYPES}
@@ -102,6 +108,7 @@ services:
     ports:
       - 9080:9080
       - 9443:9443
+      - 9444:9444
     depends_on:
       postgres:
         condition: service_healthy

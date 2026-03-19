@@ -1,0 +1,66 @@
+<!--
+  (C) Copyright Random Enterprise Solutions 2026
+
+  SPDX-License-Identifier: Apache-2.0
+
+  JWT Bearer token configuration for the FHIR Admin REST API.
+
+  HOW TO ENABLE
+  Copy or symlink this file from configDropins/disabled/ to configDropins/overrides/
+  and supply the environment variables described below. HTTP Basic auth (fhiradmin)
+  continues to work alongside JWT; Liberty accepts whichever credential the client
+  presents.
+
+  REQUIRED ENVIRONMENT VARIABLES
+  FHIR_ADMIN_JWT_JWKS_URI  - HTTPS URL of the authorization server's JWKS endpoint,
+                             e.g. https://keycloak:8443/auth/realms/admin/protocol/openid-connect/certs
+  FHIR_ADMIN_JWT_ISSUER    - Expected "iss" claim value,
+                             e.g. https://keycloak:8443/auth/realms/admin
+  FHIR_ADMIN_JWT_AUDIENCES - Expected "aud" claim value (comma-separated).
+                             Omit the audiences attribute below to skip audience validation.
+
+  SCOPE-BASED AUTHORISATION
+  This configuration uses groupNameAttribute="scope".  Liberty splits the space
+  delimited scope string from the JWT into individual group names, so a token with
+
+      "scope": "openid fhir_admin"
+
+  grants the bearer membership in the Liberty groups "openid" AND "fhir_admin".
+
+  The <application-bnd> block below maps the Liberty group "fhir_admin" to the
+  application role "FHIRAdmins".  All admin endpoints are protected by
+  @RolesAllowed("FHIRAdmins"), so only tokens that carry the fhir_admin scope
+  are authorised.
+
+  To use a different claim (e.g. "groups") change groupNameAttribute accordingly
+  and update the access-id in <group> below to match.
+-->
+<server>
+
+    <mpJwt id="fhirAdminJwtConsumer"
+           jwksUri="${env.FHIR_ADMIN_JWT_JWKS_URI}"
+           issuer="${env.FHIR_ADMIN_JWT_ISSUER}"
+           audiences="${env.FHIR_ADMIN_JWT_AUDIENCES}"
+           userNameAttribute="sub"
+           groupNameAttribute="scope"
+           authFilterRef="fhirAdminJwtFilter"
+           sslRef="defaultSSLConfig"/>
+
+    <!-- Only apply JWT processing to requests under /fhir-admin.
+         Liberty uses the existing Basic auth registry for any other URL. -->
+    <authFilter id="fhirAdminJwtFilter">
+        <requestUrl urlPattern="/fhir-admin"/>
+    </authFilter>
+
+    <!-- Map the "fhir_admin" scope (surfaced as a Liberty group by mpJwt) to
+         the application role "FHIRAdmins" that protects all admin endpoints. -->
+    <application id="fhir-admin" name="fhir-admin" location="${server.config.dir}/apps/fhir-admin.war">
+        <application-bnd>
+            <security-role name="FHIRAdmins">
+                <group name="fhir_admin"
+                       access-id="group:${env.FHIR_ADMIN_JWT_ISSUER}/fhir_admin"/>
+            </security-role>
+        </application-bnd>
+    </application>
+
+</server>

@@ -1,0 +1,91 @@
+<server description="fhir-admin-server">
+
+    <featureManager>
+        <feature>transportSecurity-1.0</feature>
+        <feature>appSecurity-2.0</feature>
+        <feature>jaxrs-2.1</feature>
+        <feature>servlet-4.0</feature>
+        <feature>cdi-2.0</feature>
+        <feature>jsonp-1.1</feature>
+        <feature>localConnector-1.0</feature>
+        <!-- mpJwt-1.2 is not enabled by default.
+             Activate it by dropping jwtRS.xml into configDropins/overrides/.
+             See configDropins/disabled/jwtRS.xml for the template. -->
+        <feature>mpJwt-1.2</feature>
+    </featureManager>
+
+    <httpDispatcher enableWelcomePage="false"/>
+    <webContainer disableXPoweredBy="true"
+        displayTextWhenNoErrorPageDefined="Unexpected request. Please check the URL and try again."
+        deferServletLoad="false"/>
+
+    <!-- TLS configuration: reuse the same keystore/truststore as the FHIR server.
+         Client certificate authentication is SUPPORTED but NOT required; the
+         actual login uses HTTP Basic auth (see login-config in web.xml). -->
+    <ssl id="defaultSSLConfig"
+         keyStoreRef="defaultKeyStore"
+         trustStoreRef="defaultTrustStore"
+         clientAuthenticationSupported="true"
+         sslProtocol="TLSv1.2"/>
+    <keyStore id="defaultKeyStore"
+              location="${server.config.dir}/resources/security/fhirKeyStore.p12"
+              password="${env.KEYSTORE_PASSWORD}"/>
+    <keyStore id="defaultTrustStore"
+              location="${server.config.dir}/resources/security/fhirTrustStore.p12"
+              password="${env.TRUSTSTORE_PASSWORD}"/>
+
+    <!-- Admin API listens on a dedicated port, separate from the FHIR API -->
+    <httpEndpoint id="defaultHttpEndpoint"
+                  host="*"
+                  httpPort="-1"
+                  httpsPort="9444"
+                  onError="FAIL"/>
+
+    <httpOptions id="defaultHttpOptions" ThrowIOEForInboundConnections="false"/>
+
+    <variable name="TRACE_SPEC"                  defaultValue="*=info"/>
+    <variable name="TRACE_FILE"                  defaultValue="trace.log"/>
+    <variable name="TRACE_FORMAT"                defaultValue="BASIC"/>
+    <variable name="WLP_LOGGING_CONSOLE_LOGLEVEL" defaultValue="INFO"/>
+    <logging traceSpecification="${TRACE_SPEC}"
+             traceFileName="${TRACE_FILE}"
+             traceFormat="${TRACE_FORMAT}"
+             consoleLogLevel="${WLP_LOGGING_CONSOLE_LOGLEVEL}"/>
+
+    <applicationManager autoExpand="true"/>
+    <applicationMonitor updateTrigger="mbean"/>
+
+    <!-- Admin WAR -->
+    <webApplication id="fhir-admin-webapp"
+                    contextRoot="/fhir-admin"
+                    location="fhir-admin.war"
+                    name="fhir-admin-webapp">
+        <application-bnd>
+            <!--
+                Map the FHIRAdmins role to the FHIRAdmins group in the
+                basicRegistry below.  Members of this group may call all
+                admin endpoints.
+            -->
+            <security-role name="FHIRAdmins">
+                <group name="FHIRAdmins"/>
+            </security-role>
+        </application-bnd>
+    </webApplication>
+
+    <!--
+        Basic user registry, mirrors the main FHIR server's basicRegistry.
+
+        Passwords should be provided via environment variables and encoded with
+        Liberty's securityUtility tool (use the -encoding=aes flag).
+
+        Alternatively, set plain-text passwords for local development only:
+          FHIR_ADMIN_PASSWORD=change-password
+    -->
+    <basicRegistry id="basic" realm="FHIRAdminRealm">
+        <user name="fhiradmin" password="${env.FHIR_ADMIN_PASSWORD}"/>
+        <group name="FHIRAdmins">
+            <member name="fhiradmin"/>
+        </group>
+    </basicRegistry>
+
+</server>

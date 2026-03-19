@@ -167,8 +167,27 @@ public class FHIRConfiguration {
 
     /**
      * This is our in-memory cache of PropertyGroup's keyed by tenant-id.
+     *
+     * <p>When the environment variable {@code FHIR_ADMIN_DB_URL} is set a
+     * {@link DatabaseAwareTenantPropertyGroupCache} is used instead, enabling
+     * DB-first config resolution and live cache invalidation driven by
+     * {@code CONFIG_VERSION} changes in the admin DB.
      */
-    private TenantSpecificPropertyGroupCache configCache = new TenantSpecificPropertyGroupCache();
+    private TenantSpecificPropertyGroupCache configCache = createPropertyGroupCache();
+
+    /**
+     * Factory: returns a {@link DatabaseAwareTenantPropertyGroupCache} when
+     * {@code FHIR_ADMIN_DB_URL} is set, otherwise the plain file-based cache.
+     */
+    private static TenantSpecificPropertyGroupCache createPropertyGroupCache() {
+        String dbUrl = System.getenv("FHIR_ADMIN_DB_URL");
+        if (dbUrl != null && !dbUrl.isBlank()) {
+            log.info("FHIR_ADMIN_DB_URL detected — activating DatabaseAwareTenantPropertyGroupCache");
+            return new DatabaseAwareTenantPropertyGroupCache(
+                    new DatabaseTenantConfigSource(dbUrl));
+        }
+        return new TenantSpecificPropertyGroupCache();
+    }
 
     /**
      * This method is used to configure an explicit top-level directory where FHIR Server configuration
